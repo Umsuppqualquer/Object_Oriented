@@ -1,6 +1,6 @@
 package T1;
 
-public class Fornecedor {
+public class Fornecedor{
     private String nome;
     private String descricao;
     private String telefone;
@@ -8,7 +8,7 @@ public class Fornecedor {
     private Endereco e1;
 
     public Fornecedor(){
-
+        this.e1 = new Endereco();
     }
 
     public void setNome(String nome) {
@@ -27,10 +27,9 @@ public class Fornecedor {
         this.email = email;
     }
 
-    public void setE1(Endereco e1) { //Lembrar de atribuir na main o objeto antes de setar
-        this.e1 = e1;
+    public void setEnd(Endereco end){
+        this.e1 = end;
     }
-
     public String getNome() {
         return nome;
     }
@@ -46,8 +45,8 @@ public class Fornecedor {
     public String getEmail() {
         return email;
     }
-    
-    public Endereco getE1() {
+
+    public Endereco getEnd(){
         return e1;
     }
 }
