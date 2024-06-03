@@ -3,6 +3,7 @@ import java.util.*;
 
 // deletar por indice
 // sistema colocar id
+// colocar para cadastrar o estoque ou seja cria o objeto depois joga para o objeto produto.
 
 public class Menu {
    
