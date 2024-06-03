@@ -4,6 +4,7 @@ public class Produto {
     private String nome;
     private String descproduto;
     private Fornecedor suplyer;
+    private Estoque qntd;
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -15,6 +16,10 @@ public class Produto {
 
     public void setSuplyer(Fornecedor suplyer) {
         this.suplyer = suplyer;
+    }
+
+    public void setQntd(Estoque qntd) {
+        this.qntd = qntd;
     }
 
     public String getNome() {
@@ -29,6 +34,9 @@ public class Produto {
         return suplyer;
     }
     
+    public Estoque getQntd() {
+        return qntd;
+    }
 
     
 }

@@ -13,7 +13,7 @@ public class Endereco {
         
     }
 
-    public void setAdress(String rua, String numero, String complemento, String bairro, String cep, String cidade, String estado){
+    public Endereco(String rua, String numero, String complemento, String bairro, String cep, String cidade, String estado) {
         this.rua = rua;
         this.numero = numero;
         this.complmento = complemento;
