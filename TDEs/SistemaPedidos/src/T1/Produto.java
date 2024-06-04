@@ -3,6 +3,7 @@ package T1;
 public class Produto {
     private String nome;
     private String descproduto;
+    private static int id;
     private Fornecedor suplyer;
     private Estoque qntd;
 
@@ -36,6 +37,10 @@ public class Produto {
     
     public Estoque getQntd() {
         return qntd;
+    }
+
+    public static int getId() {
+        return id;
     }
 
     
