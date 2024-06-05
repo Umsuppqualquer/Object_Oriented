@@ -16,6 +16,7 @@ public class MenuPrincipal {
             System.out.println("1. Fornecedor");
             System.out.println("2. Produto");
             System.out.println("3. Estoque");
+            System.out.println("9. Setup");
             System.out.println("0. Sair");
             esc = sc1.nextInt();
             switch (esc) {
@@ -30,6 +31,11 @@ public class MenuPrincipal {
                 case 3:
                     System.out.println("3. Estoque");
                     MenuEstoque.EstqMenu(p1);
+                    break;
+                case 9:
+                    System.out.println("Realizando o setup...");
+                    Utils.setup(f2, p1);
+                    Utils.fim();
                     break;
                 case 0:
                     System.out.println("Encerrando o programa...");

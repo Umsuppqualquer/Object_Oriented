@@ -95,7 +95,7 @@ public class MenuProduto {
     public static void escProd(ArrayList<Produto> p1) {
         for (int i = 0; i < p1.size(); i++) {
             System.out.println("\n----------------------------------------");
-            System.out.println("Nome do produto: " + p1.get(i).getNome() + "\n- " + p1.get(i).getDescproduto());
+            System.out.println("Nome do produto: " + p1.get(i).getNome() + "\n Desc:" + p1.get(i).getDescproduto() + "\n Id: " + p1.get(i).getId());
             Fornecedor aux = p1.get(i).getSuplyer();
             System.out.println("Fornecedor: " + aux.getNome());
             System.out.println("\n");
