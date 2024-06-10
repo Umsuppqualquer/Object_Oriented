@@ -1,4 +1,4 @@
-package T1;
+package T1.Class;
 
 public class Produto {
 	private String nome;

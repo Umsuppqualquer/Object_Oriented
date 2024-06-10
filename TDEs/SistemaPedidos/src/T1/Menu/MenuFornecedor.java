@@ -1,6 +1,10 @@
-package T1;
+package T1.Menu;
 
 import java.util.*;
+
+import T1.Utils;
+import T1.Class.Endereco;
+import T1.Class.Fornecedor;
 
 //ajustado
 

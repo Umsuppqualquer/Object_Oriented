@@ -1,4 +1,4 @@
-package T1;
+package T1.Class;
 
 //lista de produto, com os produtos
 

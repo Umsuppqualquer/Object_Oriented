@@ -1,7 +1,12 @@
-package T1;
+package T1.Menu;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import T1.Utils;
+import T1.Class.Estoque;
+import T1.Class.Fornecedor;
+import T1.Class.Produto;
 
 //ajustado
 
