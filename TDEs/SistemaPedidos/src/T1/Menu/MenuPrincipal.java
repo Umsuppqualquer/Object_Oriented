@@ -2,9 +2,8 @@ package T1.Menu;
 
 import java.util.*;
 
+import T1.Shop;
 import T1.Utils;
-import T1.Class.Fornecedor;
-import T1.Class.Produto;
 
 //colocar um pacote com os menus
 
@@ -12,9 +11,8 @@ import T1.Class.Produto;
 
 public class MenuPrincipal {
 	public static void main(String[] args) {
+		Shop c1 = new Shop();
 		int esc = 1;
-		ArrayList<Fornecedor> f2 = new ArrayList<>();
-		ArrayList<Produto> p1 = new ArrayList<>();
 		Scanner sc1 = new Scanner(System.in);
 
 		while (true) {
@@ -29,20 +27,20 @@ public class MenuPrincipal {
 			switch (esc) {
 			case 1:
 				System.out.println("1. Fornecedor");
-				MenuFornecedor.SupMenu(f2);
+				MenuFornecedor.SupMenu(c1.getListForne());
 				break;
 			case 2:
 				System.out.println("2. Produto");
-				MenuProduto.ProMenu(f2, p1);
+				MenuProduto.ProMenu(c1.getListForne(), c1.getListProd());
 				break;
 			case 3:
 				System.out.println("3. Estoque");
-				MenuEstoque.EstqMenu(p1);
+				MenuEstoque.EstqMenu(c1.getListProd());
 				break;
 			case 9:
 				Utils.clearConsole();
 				System.out.println("Modo Teste...");
-				Utils.setup(f2, p1);
+				Utils.setup(c1.getListForne(), c1.getListProd());
 				Utils.fim();
 				break;
 			case 0:
