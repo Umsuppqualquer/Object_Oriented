@@ -7,18 +7,18 @@ public class Fornecedor {
 	private String descricao;
 	private String telefone;
 	private String email;
-	private Endereco e1;
+	private Endereco endereco;
 
 	public Fornecedor(String nome, String descricao, String telefone, String email, Endereco endereco) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.telefone = telefone;
 		this.email = email;
-		this.e1 = endereco;
+		this.endereco = endereco;
 	}
 
 	public Fornecedor() {
-		this.e1 = new Endereco();
+		this.endereco = new Endereco();
 	}
 
 	public void setNome(String nome) {
@@ -38,7 +38,7 @@ public class Fornecedor {
 	}
 
 	public void setEnd(Endereco end) {
-		this.e1 = end;
+		this.endereco = end;
 	}
 
 	public String getNome() {
@@ -58,12 +58,7 @@ public class Fornecedor {
 	}
 
 	public Endereco getEnd() {
-		return e1;
+		return endereco;
 	}
 
-	@Override
-	public String toString() {
-		return "Fornecedor{" + "nome='" + nome + '\'' + ", descricao='" + descricao + '\'' + ", telefone='" + telefone
-				+ '\'' + ", email='" + email + '\'' + '}';
-	}
 }

@@ -87,7 +87,7 @@ public class MenuProduto {
 		System.out.println("\nSelecione o fornecedor:");
 		MenuFornecedor.SimpEsc(f2);
 		aux = f2.get(sc2.nextInt());
-		p.setSuplyer(aux);
+		p.setFornecedor(aux);
 
 		p1.add(p);
 
@@ -101,7 +101,7 @@ public class MenuProduto {
 		for (int i = 0; i < p1.size(); i++) {
 			System.out.println("Nome do produto: " + p1.get(i).getNome() + "\n-Desc:" + p1.get(i).getDescproduto()
 					+ "\n-Id: " + p1.get(i).getId());
-			Fornecedor aux = p1.get(i).getSuplyer();
+			Fornecedor aux = p1.get(i).getFornecedor();
 			System.out.println("-Fornecedor: " + aux.getNome());
 			System.out.println("\n----------------------------------------");
 		}
@@ -178,7 +178,7 @@ public class MenuProduto {
 			String newsup = sc.nextLine();
 			int conv = Integer.valueOf(newsup);
 			if (!newsup.isEmpty()) {
-				aux.setSuplyer(f1.get(conv));
+				aux.setFornecedor(f1.get(conv));
 			}
 
 			System.out.println("Produto ajustado com sucesso:");
@@ -206,7 +206,7 @@ public class MenuProduto {
 			System.out.println("Resultados da pesquisa: \n");
 			for (Produto produto : resultados) {
 				System.out.println("Nome do produto: " + produto.getNome() + "\n-Desc: " + produto.getDescproduto() + "\n-Id: " + produto.getId());
-				aux = produto.getSuplyer();
+				aux = produto.getFornecedor();
 				System.out.println("Fornecedor: " + aux.getNome());
 			}
 			System.out.println("----------------------------------------");

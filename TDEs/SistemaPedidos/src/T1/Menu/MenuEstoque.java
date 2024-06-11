@@ -45,7 +45,7 @@ public class MenuEstoque {
 				MenuProduto.SimpEsc(p1);
 				System.out.println("Digite o número do produto que deseja exluir:");
 				int i = sc2.nextInt();
-				if (p1.get(i).getQntd() != null) {
+				if (p1.get(i).getQuantiade() != null) {
 					excEstq(p1, i);
 					System.out.println("Foi excluído o estoque do item " + p1.get(i).getNome());
 				} else {
@@ -83,9 +83,9 @@ public class MenuEstoque {
 
 		System.out.println("Digite o valor:");
 		double val = sc2.nextDouble();
-		aux.setPreço(val);
+		aux.setPreco(val);
 
-		p1.get(i).setQntd(aux);
+		p1.get(i).setQuantidade(aux);
 
 		System.out.println("Foi dada entrada no estoque do item " + p1.get(i).getNome());
 	}
@@ -97,12 +97,12 @@ public class MenuEstoque {
 			System.out.println("\n----------------------------------------");
 			System.out.println("Nome do produto: " + p1.get(i).getNome());
 			System.out.println("Descrição: " + p1.get(i).getDescproduto());
-			aux = p1.get(i).getQntd();
-			f1 = p1.get(i).getSuplyer();
+			aux = p1.get(i).getQuantiade();
+			f1 = p1.get(i).getFornecedor();
 			if (aux != null) {
 				System.out.println("Fornecedor: " + f1.getNome());
 				System.out.println("Quantidade em estoque: " + aux.getQuantidade());
-				System.out.println("Preço unitário: R$" + aux.getPreço());
+				System.out.println("Preço unitário: R$" + aux.getPreco());
 			} else {
 				System.out.println("Este produto não possui registro de entrada no estoque.");
 			}
@@ -137,7 +137,7 @@ public class MenuEstoque {
 			System.out.println("\nSelecione o produto que deseja alterar o estoque (ou digite 0 para sair):");
 			for (int i = 0; i < p1.size(); i++) {
 				Produto produto = p1.get(i);
-				Estoque estoque = produto.getQntd();
+				Estoque estoque = produto.getQuantiade();
 				if (estoque != null) {
 					System.out.println((i + 1) + ". " + produto.getNome() + " - " + produto.getDescproduto());
 				}
@@ -147,18 +147,18 @@ public class MenuEstoque {
 				break;
 			} else if (escolha > 0 && escolha <= p1.size()) {
 				Produto produtoSelecionado = p1.get(escolha - 1);
-				Estoque estoqueSelecionado = produtoSelecionado.getQntd();
+				Estoque estoqueSelecionado = produtoSelecionado.getQuantiade();
 				System.out.println("Produto selecionado: " + produtoSelecionado.getNome());
 				System.out.println("Quantidade atual: " + estoqueSelecionado.getQuantidade() + " / Preço: R$"
-						+ estoqueSelecionado.getPreço());
+						+ estoqueSelecionado.getPreco());
 				System.out.println("Digite a nova quantidade:");
 				int novaQuantidade = sc2.nextInt();
 				estoqueSelecionado.setQuantidade(novaQuantidade);
 				System.out.println("Quantidade alterada com sucesso para: " + estoqueSelecionado.getQuantidade());
 				System.out.println("Digite o novo valor:");
 				double novoPreco = sc2.nextDouble();
-				estoqueSelecionado.setPreço(novoPreco);
-				System.out.println("Preço alterado com sucesso para: R$" + estoqueSelecionado.getPreço());
+				estoqueSelecionado.setPreco(novoPreco);
+				System.out.println("Preço alterado com sucesso para: R$" + estoqueSelecionado.getPreco());
 			} else {
 				System.out.println("Opção inválida. Por favor, escolha novamente.");
 			}

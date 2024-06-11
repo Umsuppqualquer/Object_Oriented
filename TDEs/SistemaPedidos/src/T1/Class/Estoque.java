@@ -2,22 +2,22 @@ package T1.Class;
 
 public class Estoque {
 	private int quantidade;
-	private double preço;
+	private double preco;
 
 	public Estoque() {
 
 	}
 
-	public void setPreço(double preço) {
-		this.preço = preço;
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public double getPreço() {
-		return preço;
+	public double getPreco() {
+		return preco;
 	}
 
 	public int getQuantidade() {

@@ -13,6 +13,7 @@ public class Endereco {
 
 	}
 
+	//construtor para teste
 	public Endereco(String rua, String numero, String complemento, String bairro, String cep, String cidade,
 			String estado) {
 		this.rua = rua;

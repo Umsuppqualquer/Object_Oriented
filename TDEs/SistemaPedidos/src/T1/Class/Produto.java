@@ -5,18 +5,18 @@ public class Produto {
 	private String descproduto;
 	private static int cont = 0;
 	private int id;
-	private Fornecedor suplyer;
-	private Estoque qntd;
+	private Fornecedor forneco;
+	private Estoque quantidade;
 
 	public Produto() {
 		this.id = cont;
 		cont++;
 	}
 
-	public Produto(String nome, String desc, Fornecedor suplyer) {
+	public Produto(String nome, String desc, Fornecedor forneco) {
 		this.nome = nome;
 		this.descproduto = desc;
-		this.suplyer = suplyer;
+		this.forneco = forneco;
 		this.id = cont;
 		cont++;
 	}
@@ -29,12 +29,12 @@ public class Produto {
 		this.descproduto = descproduto;
 	}
 
-	public void setSuplyer(Fornecedor suplyer) {
-		this.suplyer = suplyer;
+	public void setFornecedor(Fornecedor suplyer) {
+		this.forneco = suplyer;
 	}
 
-	public void setQntd(Estoque qntd) {
-		this.qntd = qntd;
+	public void setQuantidade(Estoque qntd) {
+		this.quantidade = qntd;
 	}
 
 	public String getNome() {
@@ -45,12 +45,12 @@ public class Produto {
 		return descproduto;
 	}
 
-	public Fornecedor getSuplyer() {
-		return suplyer;
+	public Fornecedor getFornecedor() {
+		return forneco;
 	}
 
-	public Estoque getQntd() {
-		return qntd;
+	public Estoque getQuantiade() {
+		return quantidade;
 	}
 
 	public int getId() {
