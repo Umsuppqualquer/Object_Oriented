@@ -1,5 +1,6 @@
 package T2.Class;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Pedido extends Cliente {
@@ -8,13 +9,13 @@ public class Pedido extends Cliente {
     private Date dataPedido;
     private Date dataEntrega;
     private String situação;
-    private ItemPedido p1;
+    private ArrayList<ItemPedido> carrinho;
 
     public Pedido(){
         this.numero = cont;
         cont++;
-        dataPedido = new Date(); //quando criado ele ja armazena a data no qual foi criado
-        System.out.println("Data : " + dataPedido.toString());
+        dataPedido = new Date();
+        carrinho = new ArrayList<>();
     }
 
     public void setNumero(int numero) {
@@ -45,7 +46,12 @@ public class Pedido extends Cliente {
         return situação;
     }
 
+    public void excItemCarrinho(int i){
+        carrinho.remove(i);
+    }
 
-
+    public void addItemCarrinho(ItemPedido obj){
+        carrinho.add(obj);
+    }
     
 }
