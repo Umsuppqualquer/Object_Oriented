@@ -3,6 +3,7 @@ package T1.Menu;
 import java.util.*;
 
 import T1.Utils;
+import T1.Class.Produto;
 import T1.Class.Endereco;
 import T1.Class.Fornecedor;
 
@@ -112,6 +113,8 @@ public class MenuFornecedor {
 
 	public static void escForn(ArrayList<Fornecedor> f2) {
 		Endereco aux;
+		ArrayList<Produto> list;
+		Produto item;
 		System.out.println("\n----------------------------------------\n");
 		for (int i = 0; i < f2.size(); i++) {
 			System.out.println("Nome da empresa: " + f2.get(i).getNome() + "\nDescrição: " + f2.get(i).getDescricao()
@@ -120,6 +123,12 @@ public class MenuFornecedor {
 			System.out.println("Rua: " + aux.getRua() + "\nNúmero: " + aux.getNumero() + "\nComplemento: "
 					+ aux.getComplmento() + "\nBairro: " + aux.getBairro() + "\nCEP: " + aux.getCep() + "\nCidade: "
 					+ aux.getCidade() + "\nEstado: " + aux.getEstado());
+			System.out.println("Produtos: ");
+			list = f2.get(i).getItens();
+			for(int j = 0; j < list.size(); j++){
+				item = list.get(j);
+				System.out.println(j + ". " + item.getNome());
+			}
 			System.out.println("\n----------------------------------------\n");
 		}
 	}

@@ -88,6 +88,7 @@ public class MenuProduto {
 		MenuFornecedor.SimpEsc(f2);
 		aux = f2.get(sc2.nextInt());
 		p.setFornecedor(aux);
+		aux.addItem(p);
 
 		p1.add(p);
 
@@ -132,7 +133,7 @@ public class MenuProduto {
 			switch (op) {
 			case 1:
 				p1.remove(index);
-							orgList(p1);
+				orgList(p1);
 				System.out.println("\nFoi realizada a remoção do cadastro.");
 				return;
 			case 2:

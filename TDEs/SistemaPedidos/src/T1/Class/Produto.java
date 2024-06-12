@@ -49,7 +49,7 @@ public class Produto {
 		return forneco;
 	}
 
-	public Estoque getQuantiade() {
+	public Estoque getQuantidade() {
 		return quantidade;
 	}
 

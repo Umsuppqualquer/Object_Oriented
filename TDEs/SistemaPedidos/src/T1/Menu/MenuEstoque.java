@@ -12,7 +12,7 @@ import T1.Class.Produto;
 
 public class MenuEstoque {
 
-	public static void EstqMenu(ArrayList<Produto> p1) {
+	public static void EstqMenu(ArrayList<Produto> p1, ArrayList<Fornecedor> f2) {
 
 		Utils.clearConsole();
 
@@ -26,6 +26,7 @@ public class MenuEstoque {
 			System.out.println("2. Mostrar os estoques de produto.");
 			System.out.println("3. Excluir estoque.");
 			System.out.println("4. Ajuste de estoque.");
+			System.out.println("5. Troca de fornecedor.");
 			System.out.println("0. Retornar ao menu principal.");
 			esc = sc2.nextInt();
 
@@ -45,7 +46,7 @@ public class MenuEstoque {
 				MenuProduto.SimpEsc(p1);
 				System.out.println("Digite o número do produto que deseja exluir:");
 				int i = sc2.nextInt();
-				if (p1.get(i).getQuantiade() != null) {
+				if (p1.get(i).getQuantidade() != null) {
 					excEstq(p1, i);
 					System.out.println("Foi excluído o estoque do item " + p1.get(i).getNome());
 				} else {
@@ -97,7 +98,7 @@ public class MenuEstoque {
 			System.out.println("\n----------------------------------------");
 			System.out.println("Nome do produto: " + p1.get(i).getNome());
 			System.out.println("Descrição: " + p1.get(i).getDescproduto());
-			aux = p1.get(i).getQuantiade();
+			aux = p1.get(i).getQuantidade();
 			f1 = p1.get(i).getFornecedor();
 			if (aux != null) {
 				System.out.println("Fornecedor: " + f1.getNome());
@@ -137,7 +138,7 @@ public class MenuEstoque {
 			System.out.println("\nSelecione o produto que deseja alterar o estoque (ou digite 0 para sair):");
 			for (int i = 0; i < p1.size(); i++) {
 				Produto produto = p1.get(i);
-				Estoque estoque = produto.getQuantiade();
+				Estoque estoque = produto.getQuantidade();
 				if (estoque != null) {
 					System.out.println((i + 1) + ". " + produto.getNome() + " - " + produto.getDescproduto());
 				}
@@ -146,19 +147,20 @@ public class MenuEstoque {
 			if (escolha == 0) {
 				break;
 			} else if (escolha > 0 && escolha <= p1.size()) {
-				Produto produtoSelecionado = p1.get(escolha - 1);
-				Estoque estoqueSelecionado = produtoSelecionado.getQuantiade();
-				System.out.println("Produto selecionado: " + produtoSelecionado.getNome());
-				System.out.println("Quantidade atual: " + estoqueSelecionado.getQuantidade() + " / Preço: R$"
-						+ estoqueSelecionado.getPreco());
+				Produto prodaux = p1.get(escolha - 1);
+				Estoque estqaux = prodaux.getQuantidade();
+				System.out.println("Produto selecionado: " + prodaux.getNome());
+				System.out.println("Quantidade atual: " + estqaux.getQuantidade() + " / Preço: R$"
+						+ estqaux.getPreco());
 				System.out.println("Digite a nova quantidade:");
 				int novaQuantidade = sc2.nextInt();
-				estoqueSelecionado.setQuantidade(novaQuantidade);
-				System.out.println("Quantidade alterada com sucesso para: " + estoqueSelecionado.getQuantidade());
+				estqaux.setQuantidade(novaQuantidade);
+				System.out.println("Quantidade alterada com sucesso para: " + estqaux.getQuantidade());
 				System.out.println("Digite o novo valor:");
 				double novoPreco = sc2.nextDouble();
-				estoqueSelecionado.setPreco(novoPreco);
-				System.out.println("Preço alterado com sucesso para: R$" + estoqueSelecionado.getPreco());
+				estqaux.setPreco(novoPreco);
+				System.out.println("Preço alterado com sucesso para: R$" + estqaux.getPreco()); 
+
 			} else {
 				System.out.println("Opção inválida. Por favor, escolha novamente.");
 			}

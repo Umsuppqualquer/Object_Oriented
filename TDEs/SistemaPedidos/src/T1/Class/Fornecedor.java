@@ -1,6 +1,6 @@
 package T1.Class;
 
-//lista de produto, com os produtos
+import java.util.ArrayList;
 
 public class Fornecedor {
 	private String nome;
@@ -8,6 +8,8 @@ public class Fornecedor {
 	private String telefone;
 	private String email;
 	private Endereco endereco;
+	private ArrayList<Produto> itens;
+
 
 	public Fornecedor(String nome, String descricao, String telefone, String email, Endereco endereco) {
 		this.nome = nome;
@@ -15,10 +17,12 @@ public class Fornecedor {
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
+		this.itens = new ArrayList<>();
 	}
 
 	public Fornecedor() {
 		this.endereco = new Endereco();
+		this.itens = new ArrayList<>();
 	}
 
 	public void setNome(String nome) {
@@ -61,4 +65,27 @@ public class Fornecedor {
 		return endereco;
 	}
 
+	public ArrayList<Produto> getItens(){
+		return itens;
+	}
+
+	public void addItem(Produto item){
+		itens.add(item);
+	}
+
+	public void excItem(Produto item){
+		int esc = -1;
+		for(int i = 0; i < this.itens.size();i++){
+			if (item == this.itens.get(i)){
+				esc = i;
+				break;
+			}
+		}
+		if (esc < 0){
+			System.out.println("Item não esta presente neste fornecedor");
+		}
+		else{
+			this.itens.remove(esc);
+		}
+	}
 }
