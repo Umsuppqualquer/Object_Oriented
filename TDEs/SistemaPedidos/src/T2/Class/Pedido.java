@@ -3,7 +3,9 @@ package T2.Class;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Pedido extends Cliente {
+//A classe pedido não herda cliente, ela tem que ter um cliente
+
+public class Pedido {
     private int numero;
     private static int cont = 0;
     private Date dataPedido;
