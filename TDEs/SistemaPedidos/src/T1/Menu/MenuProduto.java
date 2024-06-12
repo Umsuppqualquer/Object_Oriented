@@ -116,22 +116,25 @@ public class MenuProduto {
 			if (p1.get(i).getNome().charAt(0) == a) {
 				System.out.println(i + "° - " + p1.get(i).getNome());
 			} else {
+				System.out.println("\n----------------------------------------");
 				a = p1.get(i).getNome().charAt(0);
 				System.out.println(a);
 				System.out.println(i + "° - " + p1.get(i).getNome());
-				System.out.println("\n----------------------------------------");
 			}
 		}
 	}
 
 	public static void excProd(ArrayList<Produto> p1, int index) {
 		Scanner sc2 = new Scanner(System.in);
+		Fornecedor aux = p1.get(index).getFornecedor();
+
 		System.out.println("\nConfirmar exclusão de cadastro: " + p1.get(index).getNome());
 		System.out.println("1 - Sim\n2 - Não");
 		int op = sc2.nextInt();
 		while (true) {
 			switch (op) {
 			case 1:
+				aux.excItem(p1.get(index));
 				p1.remove(index);
 				orgList(p1);
 				System.out.println("\nFoi realizada a remoção do cadastro.");
@@ -179,7 +182,11 @@ public class MenuProduto {
 			String newsup = sc.nextLine();
 			int conv = Integer.valueOf(newsup);
 			if (!newsup.isEmpty()) {
-				aux.setFornecedor(f1.get(conv));
+				Fornecedor sup = aux.getFornecedor();
+				sup.excItem(aux);
+				sup = f1.get(conv);
+				sup.addItem(aux);
+				aux.setFornecedor(sup);
 			}
 
 			System.out.println("Produto ajustado com sucesso:");

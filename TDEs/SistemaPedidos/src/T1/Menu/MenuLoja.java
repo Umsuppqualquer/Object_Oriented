@@ -5,10 +5,6 @@ import java.util.*;
 import T1.Shop;
 import T1.Utils;
 
-//colocar um pacote com os menus
-
-//classe loja, que possui as listas
-
 public class MenuLoja {
 	public static void main(String[] args) {
 		Shop c1 = new Shop();
