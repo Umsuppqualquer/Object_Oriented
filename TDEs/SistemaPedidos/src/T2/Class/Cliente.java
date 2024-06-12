@@ -7,6 +7,7 @@ public class Cliente {
     private String email;
     private String cartaoCredito;
     private Endereco end;
+    private ArrayList<Pedido> p1; //tem que ser armazenado os pedidos no qual este cliente fez
 
     public Cliente(){
 
