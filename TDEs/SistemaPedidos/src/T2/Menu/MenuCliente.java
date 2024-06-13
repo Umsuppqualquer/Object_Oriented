@@ -2,8 +2,8 @@ package T2.Menu;
 
 import java.util.*;
 
-import T1.Shop;
-import T1.Utils;
+import Geral.Shop;
+import Geral.Utils;
 
 //colocar um pacote com os menus
 

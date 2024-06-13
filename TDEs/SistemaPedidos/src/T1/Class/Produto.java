@@ -13,14 +13,6 @@ public class Produto {
 		cont++;
 	}
 
-	public Produto(String nome, String desc, Fornecedor forneco) {
-		this.nome = nome;
-		this.descproduto = desc;
-		this.forneco = forneco;
-		this.id = cont;
-		cont++;
-	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}

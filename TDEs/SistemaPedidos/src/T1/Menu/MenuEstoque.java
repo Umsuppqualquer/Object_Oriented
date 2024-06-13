@@ -3,7 +3,7 @@ package T1.Menu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import T1.Utils;
+import Geral.*;
 import T1.Class.Estoque;
 import T1.Class.Fornecedor;
 import T1.Class.Produto;
@@ -12,7 +12,7 @@ import T1.Class.Produto;
 
 public class MenuEstoque {
 
-	public static void EstqMenu(ArrayList<Produto> p1, ArrayList<Fornecedor> f2) {
+	public static void EstqMenu(Shop list) {
 
 		Utils.clearConsole();
 

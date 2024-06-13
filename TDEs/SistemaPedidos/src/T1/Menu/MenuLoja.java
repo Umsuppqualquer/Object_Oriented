@@ -2,12 +2,11 @@ package T1.Menu;
 
 import java.util.*;
 
-import T1.Shop;
-import T1.Utils;
+import Geral.*;
 
 public class MenuLoja {
 	public static void main(String[] args) {
-		Shop c1 = new Shop();
+		Shop lista = new Shop();
 		int esc = 1;
 		Scanner sc1 = new Scanner(System.in);
 
@@ -23,20 +22,20 @@ public class MenuLoja {
 			switch (esc) {
 			case 1:
 				System.out.println("1. Fornecedor");
-				MenuFornecedor.SupMenu(c1.getListForne());
+				MenuFornecedor.SupMenu(lista);
 				break;
 			case 2:
 				System.out.println("2. Produto");
-				MenuProduto.ProMenu(c1.getListForne(), c1.getListProd());
+				MenuProduto.ProMenu(lista);
 				break;
 			case 3:
 				System.out.println("3. Estoque");
-				MenuEstoque.EstqMenu(c1.getListProd(),c1.getListForne());
+				MenuEstoque.EstqMenu(lista);
 				break;
 			case 9:
 				Utils.clearConsole();
 				System.out.println("Modo Teste...");
-				Utils.setup(c1.getListForne(), c1.getListProd());
+				//Utils.setup(lista);
 				Utils.fim();
 				break;
 			case 0:

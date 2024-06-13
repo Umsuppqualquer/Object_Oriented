@@ -2,7 +2,7 @@ package T1.Menu;
 
 import java.util.*;
 
-import T1.Utils;
+import Geral.*;
 import T1.Class.Produto;
 import T1.Class.Endereco;
 import T1.Class.Fornecedor;
@@ -11,7 +11,7 @@ import T1.Class.Fornecedor;
 
 public class MenuFornecedor {
 
-	public static void SupMenu(ArrayList<Fornecedor> f2) {
+	public static void SupMenu(Shop list) {
 
 		Utils.clearConsole();
 
@@ -32,20 +32,20 @@ public class MenuFornecedor {
 			switch (esc) {
 			case 1:
 				System.out.println("Você escolheu a Opção 1. Cadastro de fornecedor.");
-				cadForn(f2);
+				cadForn(list);
 				Utils.fim();
 				break;
 			case 2:
 				System.out.println("Você escolheu a Opção 2. Mostrar os fornecedores.");
-				escForn(f2);
+				escForn(list);
 				Utils.fim();
 				break;
 			case 3:
 				System.out.println("Você escolheu a Opção 3. Excluir fornecedor.");
-				SimpEsc(f2);
+				SimpEsc(list);
 				System.out.println("Digite o número do fornecedor que deseja excluir:");
 				int i = sc1.nextInt();
-				excForn(f2, i);
+				excForn(list, i);
 				Utils.fim();
 				break;
 			case 4:
@@ -74,7 +74,7 @@ public class MenuFornecedor {
 		}
 	}
 
-	public static void cadForn(ArrayList<Fornecedor> f2) {
+	public static void cadForn(Shop list) { //revisado
 		Scanner sc2 = new Scanner(System.in);
 		Endereco aux = new Endereco();
 		Fornecedor f = new Fornecedor();
@@ -102,47 +102,38 @@ public class MenuFornecedor {
 		System.out.println("\nEstado onde reside:");
 		aux.setEstado(sc2.nextLine());
 
-		f.setEnd(aux);
+		f.setLocal(aux);
 
-		f2.add(f);
-
-		orgList(f2);
+		list.addForne(f);
 
 		return;
 	}
 
-	public static void escForn(ArrayList<Fornecedor> f2) {
-		Endereco aux;
-		ArrayList<Produto> list;
-		Produto item;
+	public static void escForn(Shop list) { //revisado
 		System.out.println("\n----------------------------------------\n");
-		for (int i = 0; i < f2.size(); i++) {
-			System.out.println("Nome da empresa: " + f2.get(i).getNome() + "\nDescrição: " + f2.get(i).getDescricao()
-					+ "\nTelefone: " + f2.get(i).getTelefone() + "\nEmail: " + f2.get(i).getEmail());
-			aux = f2.get(i).getEnd();
-			System.out.println("Rua: " + aux.getRua() + "\nNúmero: " + aux.getNumero() + "\nComplemento: "
-					+ aux.getComplmento() + "\nBairro: " + aux.getBairro() + "\nCEP: " + aux.getCep() + "\nCidade: "
-					+ aux.getCidade() + "\nEstado: " + aux.getEstado());
+		for (int i = 0; i < list.sizeForne(); i++) {
+			System.out.println("Nome da empresa: " + list.forneAt(i).getNome() + "\nDescrição: " + list.forneAt(i).getDescricao()
+					+ "\nTelefone: " + list.forneAt(i).getTelefone() + "\nEmail: " + list.forneAt(i).getEmail());
+			System.out.println("Rua: " + list.forneAt(i).getLocal().getRua() + "\nNúmero: " + list.forneAt(i).getLocal().getNumero() + "\nComplemento: "
+					+ list.forneAt(i).getLocal().getComplmento() + "\nBairro: " + list.forneAt(i).getLocal().getBairro() + "\nCEP: " + list.forneAt(i).getLocal().getCep() + "\nCidade: "
+					+ list.forneAt(i).getLocal().getCidade() + "\nEstado: " + list.forneAt(i).getLocal().getEstado());
 			System.out.println("Produtos: ");
-			list = f2.get(i).getItens();
-			for(int j = 0; j < list.size(); j++){
-				item = list.get(j);
-				System.out.println(j + ". " + item.getNome());
+			for(int j = 0; j < list.forneAt(i).sizeProd(); j++){
+				System.out.println(j + ". " + list.forneAt(i).prodAt(j).getNome());
 			}
 			System.out.println("\n----------------------------------------\n");
 		}
 	}
 
-	public static void SimpEsc(ArrayList<Fornecedor> f2) {
+	public static void SimpEsc(Shop list) {
 		char a = '\n';
 		System.out.println("\n----------------------------------------");
-		for (int i = 0; i < f2.size(); i++) {
-			if (f2.get(i).getNome().charAt(0) == a) {
-				System.out.println(i + "° - " + f2.get(i).getNome()+"\n");
+		for (int i = 0; i < list.sizeForne(); i++) {
+			if (list.forneAt(i).getNome().charAt(0) == a) {
+				System.out.println(i + "° - " + list.forneAt(i).getNome()+"\n");
 			} else {
-				a = f2.get(i).getNome().charAt(0);
-				System.out.println(a);
-				System.out.println(i + "° - " + f2.get(i).getNome());
+				System.out.println(list.forneAt(i).getNome().charAt(0));
+				System.out.println(i + "° - " + list.forneAt(i).getNome(i).getNome());
 				System.out.println("\n----------------------------------------");
 			}
 		}

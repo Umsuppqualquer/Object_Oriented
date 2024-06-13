@@ -2,7 +2,7 @@ package T1.Menu;
 
 import java.util.*;
 
-import T1.Utils;
+import Geral.*;
 import T1.Class.Fornecedor;
 import T1.Class.Produto;
 
@@ -10,7 +10,7 @@ import T1.Class.Produto;
 
 public class MenuProduto {
 
-	public static void ProMenu(ArrayList<Fornecedor> f2, ArrayList<Produto> p1) {
+	public static void ProMenu(Shop list) {
 
 		Utils.clearConsole();
 
