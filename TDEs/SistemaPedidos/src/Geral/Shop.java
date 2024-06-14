@@ -8,8 +8,8 @@ import T1.Class.*;
 
 public class Shop {
 
-    private ArrayList<Fornecedor> supplyer;
-    private ArrayList<Produto> product;
+    private List<Fornecedor> supplyer;
+    private List<Produto> product;
 
     public Shop(){
         this.supplyer = new ArrayList<>();

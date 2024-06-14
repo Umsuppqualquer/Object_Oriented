@@ -2,7 +2,7 @@ package T1.Menu;
 
 import java.util.*;
 
-import Geral.*;
+import Geral.Utils;
 import T1.Class.Fornecedor;
 import T1.Class.Produto;
 

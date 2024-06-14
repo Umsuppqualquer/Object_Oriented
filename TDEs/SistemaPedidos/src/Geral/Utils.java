@@ -26,7 +26,7 @@ public class Utils {
 		clearConsole();
 	}
 
-	public static void setup(ArrayList<Fornecedor> f2, ArrayList<Produto> p1) {
+	/*public static void setup(ArrayList<Fornecedor> f2, ArrayList<Produto> p1) {
 		Endereco enderecoCliente1 = new Endereco("Rua da Paz", "456", "Bloco B, Ap. 301", "Jardim Botânico",
 				"54321-123", "São Paulo", "SP");
 		Fornecedor f4 = new Fornecedor();
@@ -53,6 +53,6 @@ public class Utils {
 		Produto prod2 = new Produto("Suporte Tv", "51 polegadas", f5);
 		p1.add(prod2);
 
-	}
+	}*/
 
 }
