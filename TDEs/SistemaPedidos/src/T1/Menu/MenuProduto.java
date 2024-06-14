@@ -2,7 +2,7 @@ package T1.Menu;
 
 import java.util.*;
 
-import Geral.Utils;
+import Geral.*;
 import T1.Class.Fornecedor;
 import T1.Class.Produto;
 
@@ -29,19 +29,19 @@ public class MenuProduto {
 			esc = sc1.nextInt();
 
 			switch (esc) {
-			case 1:
+			case 1: //corrigido
 				System.out.println("\nVocê escolheu a Opção 1. Cadastro de produto.");
-				cadProd(p1, f2);
+				cadProd(list);
 				Utils.fim();
 				break;
-			case 2:
+			case 2: //corrigido
 				System.out.println("\nVocê escolheu a Opção 2. Mostrar os produtos.");
-				escProd(p1);
+				escProd(list);
 				Utils.fim();
 				break;
 			case 3:
 				System.out.println("\nVocê escolheu a Opção 3. Excluir produto.");
-				SimpEsc(p1);
+				SimpEsc(list);
 				System.out.println("Digite o número do produto que deseja excluir:");
 				int i = sc1.nextInt();
 				excProd(p1, i);
@@ -74,7 +74,7 @@ public class MenuProduto {
 		}
 	}
 
-	public static void cadProd(ArrayList<Produto> p1, ArrayList<Fornecedor> f2) {
+	public static void cadProd(Shop list) { //revisado
 
 		Scanner sc2 = new Scanner(System.in);
 		Fornecedor aux = new Fornecedor();
@@ -85,46 +85,44 @@ public class MenuProduto {
 		System.out.println("\nDigite a descrição do produto:");
 		p.setDescproduto(sc2.nextLine());
 		System.out.println("\nSelecione o fornecedor:");
-		MenuFornecedor.SimpEsc(f2);
-		aux = f2.get(sc2.nextInt());
+		MenuFornecedor.SimpEsc(list);
+		aux = list.forneAt(sc2.nextInt());
 		p.setFornecedor(aux);
 		aux.addItem(p);
 
-		p1.add(p);
-
-		orgList(p1);
+		list.addProd(p);
 
 		return;
 	}
 
-	public static void escProd(ArrayList<Produto> p1) {
+	public static void escProd(Shop list) { //revisado
 		System.out.println("\n----------------------------------------");
-		for (int i = 0; i < p1.size(); i++) {
-			System.out.println("Nome do produto: " + p1.get(i).getNome() + "\n-Desc:" + p1.get(i).getDescproduto()
-					+ "\n-Id: " + p1.get(i).getId());
-			Fornecedor aux = p1.get(i).getFornecedor();
+		for (int i = 0; i < list.sizeProd(); i++) {
+			System.out.println("Nome do produto: " + list.prodAt(i).getNome() + "\n-Desc:" + list.prodAt(i).getDescproduto()
+					+ "\n-Id: " + list.prodAt(i).getId());
+			Fornecedor aux = list.prodAt(i).getFornecedor();
 			System.out.println("-Fornecedor: " + aux.getNome());
 			System.out.println("\n----------------------------------------");
 		}
 		System.out.println("");
 	}
 
-	public static void SimpEsc(ArrayList<Produto> p1) {
+	public static void SimpEsc(Shop list) { //revisado
 		char a = '\n';
 		System.out.println("\n----------------------------------------");
-		for (int i = 0; i < p1.size(); i++) {
-			if (p1.get(i).getNome().charAt(0) == a) {
-				System.out.println(i + "° - " + p1.get(i).getNome());
+		for (int i = 0; i < list.sizeProd(); i++) {
+			if (list.prodAt(i).getNome().charAt(0) == a) {
+				System.out.println(i + "° - " + list.prodAt(i).getNome());
 			} else {
 				System.out.println("\n----------------------------------------");
-				a = p1.get(i).getNome().charAt(0);
+				a = list.prodAt(i).getNome().charAt(0);
 				System.out.println(a);
-				System.out.println(i + "° - " + p1.get(i).getNome());
+				System.out.println(i + "° - " + list.prodAt(i).getNome());
 			}
 		}
 	}
 
-	public static void excProd(ArrayList<Produto> p1, int index) {
+	public static void excProd(Shop list) {
 		Scanner sc2 = new Scanner(System.in);
 		Fornecedor aux = p1.get(index).getFornecedor();
 

@@ -21,7 +21,7 @@ public class MenuLoja {
 			esc = sc1.nextInt();
 			switch (esc) {
 			case 1:
-				System.out.println("1. Fornecedor");
+				System.out.println("1. Fornecedor"); //revisado
 				MenuFornecedor.SupMenu(lista);
 				break;
 			case 2:
@@ -35,7 +35,7 @@ public class MenuLoja {
 			case 9:
 				Utils.clearConsole();
 				System.out.println("Modo Teste...");
-				//Utils.setup(lista);
+				Utils.setup(lista);
 				Utils.fim();
 				break;
 			case 0:
