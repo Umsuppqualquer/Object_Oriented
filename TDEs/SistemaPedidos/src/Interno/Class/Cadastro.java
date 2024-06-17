@@ -1,4 +1,4 @@
-package T1.Class;
+package Interno.Class;
 public class Cadastro {
 
     private String nome;

@@ -1,11 +1,10 @@
-package T1.Menu;
+package Interno.Menu;
 
 import java.util.*;
 
 import Geral.*;
-import T1.Class.Produto;
-import T1.Class.Endereco;
-import T1.Class.Fornecedor;
+import Interno.Class.Endereco;
+import Interno.Class.Fornecedor;
 
 //ajustado
 
@@ -42,7 +41,7 @@ public class MenuFornecedor {
 				break;
 			case 3:
 				System.out.println("Você escolheu a Opção 3. Excluir fornecedor.");
-				SimpEsc(list);
+				list.fornSimp();
 				System.out.println("Digite o número do fornecedor que deseja excluir:");
 				int i = sc1.nextInt();
 				Fornecedor aux = list.forneAt(i);
@@ -51,7 +50,7 @@ public class MenuFornecedor {
 				break;
 			case 4:
 				System.out.println("Você escolheu a Opção 4. Ajuste de cadastro de fornecedor.");
-				SimpEsc(list);
+				list.fornSimp();
 				System.out.println("Digite o número do fornecedor que deseja ajustar:");
 				int j = sc1.nextInt();
 				AjustForn(list.forneAt(j));
@@ -124,21 +123,6 @@ public class MenuFornecedor {
 			}
 			System.out.println("\n----------------------------------------\n");
 		}
-	}
-
-	public static void SimpEsc(Shop list) { //revisado
-		char a = '\n';
-		System.out.println("\n----------------------------------------");
-		for (int i = 0; i < list.sizeForne(); i++) {
-			if (list.forneAt(i).getNome().charAt(0) == a) {
-				System.out.println(i + "° - " + list.forneAt(i).getNome()+"\n");
-			} else {
-				System.out.println(list.forneAt(i).getNome().charAt(0));
-				System.out.println(i + "° - " + list.forneAt(i).getNome()+"\n");
-				System.out.println("\n----------------------------------------");
-			}
-		}
-		System.out.println("\n");
 	}
 
 	public static void orgList(List<Fornecedor> f2) {

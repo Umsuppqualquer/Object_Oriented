@@ -1,4 +1,4 @@
-package T2.Class;
+package Externo.Class;
 
 public class ItemPedido {
     private String nome;

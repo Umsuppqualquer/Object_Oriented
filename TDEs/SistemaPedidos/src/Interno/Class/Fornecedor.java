@@ -1,4 +1,4 @@
-package T1.Class;
+package Interno.Class;
 
 import java.util.ArrayList;
 

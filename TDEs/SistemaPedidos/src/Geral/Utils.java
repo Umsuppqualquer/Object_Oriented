@@ -1,12 +1,6 @@
 package Geral;
 
-
-import java.util.*;
 import java.util.Scanner;
-
-import T1.Class.Endereco;
-import T1.Class.Fornecedor;
-import T1.Class.Produto;
 
 public class Utils {
 	private static final Scanner scanner = new Scanner(System.in);

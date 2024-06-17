@@ -1,4 +1,4 @@
-package T1.Class;
+package Interno.Class;
 
 public class Produto {
 	private String nome;
@@ -41,7 +41,7 @@ public class Produto {
 		return forneco;
 	}
 
-	public Estoque getQuantidade() {
+	public Estoque getEstoque() {
 		return quantidade;
 	}
 
@@ -49,4 +49,17 @@ public class Produto {
 		return id;
 	}
 
+	@Override //comparador
+	public boolean equals(Object obj){
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto aux = (Produto) obj;
+		if (this.getNome().contains(aux.getNome()))
+			return false;
+		return true;
+	}
 }

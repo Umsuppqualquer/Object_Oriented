@@ -1,10 +1,10 @@
-package T1.Menu;
+package Interno.Menu;
 
 import java.util.*;
 
 import Geral.*;
-import T1.Class.Fornecedor;
-import T1.Class.Produto;
+import Interno.Class.Fornecedor;
+import Interno.Class.Produto;
 
 //ajustado
 
@@ -39,28 +39,29 @@ public class MenuProduto {
 				escProd(list);
 				Utils.fim();
 				break;
-			case 3:
+			case 3: //corrigido
 				System.out.println("\nVocê escolheu a Opção 3. Excluir produto.");
-				SimpEsc(list);
+				list.prodSimp();
 				System.out.println("Digite o número do produto que deseja excluir:");
 				int i = sc1.nextInt();
-				excProd(p1, i);
+				Produto aux = list.prodAt(i);
+				list.excProd(aux);
 				Utils.fim();
 				break;
-			case 4:
+			case 4: //corrigido
 				System.out.println("\nVocê escolheu a Opção 4. Ajuste de cadastro de produto.");
-				SimpEsc(p1);
+				list.prodSimp();
 				System.out.println("Digite o número do produto que deseja ajustar:");
 				int j = sc1.nextInt();
-				AjustProd(p1, f2, j);
+				AjustProd(list.prodAt(j),list);
 				Utils.fim();
 				break;
 			case 5:
 				System.out.println("\nVocê escolheu a Opção 5. Consulta por nome ou código.");
 				System.out.println("Digite o nome ou código do produto que deseja pesquisar:");
 				sc1.nextLine();
-				String chavePesquisa = sc1.nextLine();
-				searchForn(p1, chavePesquisa);
+				String key = sc1.nextLine();
+				searchForn(list, key);
 				Utils.fim();
 				break;
 			case 0:
@@ -85,7 +86,7 @@ public class MenuProduto {
 		System.out.println("\nDigite a descrição do produto:");
 		p.setDescproduto(sc2.nextLine());
 		System.out.println("\nSelecione o fornecedor:");
-		MenuFornecedor.SimpEsc(list);
+		list.fornSimp();;
 		aux = list.forneAt(sc2.nextInt());
 		p.setFornecedor(aux);
 		aux.addItem(p);
@@ -107,46 +108,6 @@ public class MenuProduto {
 		System.out.println("");
 	}
 
-	public static void SimpEsc(Shop list) { //revisado
-		char a = '\n';
-		System.out.println("\n----------------------------------------");
-		for (int i = 0; i < list.sizeProd(); i++) {
-			if (list.prodAt(i).getNome().charAt(0) == a) {
-				System.out.println(i + "° - " + list.prodAt(i).getNome());
-			} else {
-				System.out.println("\n----------------------------------------");
-				a = list.prodAt(i).getNome().charAt(0);
-				System.out.println(a);
-				System.out.println(i + "° - " + list.prodAt(i).getNome());
-			}
-		}
-	}
-
-	public static void excProd(Shop list) {
-		Scanner sc2 = new Scanner(System.in);
-		Fornecedor aux = p1.get(index).getFornecedor();
-
-		System.out.println("\nConfirmar exclusão de cadastro: " + p1.get(index).getNome());
-		System.out.println("1 - Sim\n2 - Não");
-		int op = sc2.nextInt();
-		while (true) {
-			switch (op) {
-			case 1:
-				aux.excItem(p1.get(index));
-				p1.remove(index);
-				orgList(p1);
-				System.out.println("\nFoi realizada a remoção do cadastro.");
-				return;
-			case 2:
-				System.out.println("Operação de remoção cancelada.");
-				return;
-			default:
-				System.out.println("Opção inválida, tente novamente.");
-				break;
-			}
-		}
-	}
-
 	public static void orgList(ArrayList<Produto> p1) {
 		Collections.sort(p1, new Comparator<Produto>() {
 			@Override
@@ -156,35 +117,33 @@ public class MenuProduto {
 		});
 	}
 
-	public static void AjustProd(ArrayList<Produto> p1, ArrayList<Fornecedor> f1, int index) {
+	public static void AjustProd(Produto p1, Shop list) {
 		Scanner sc = new Scanner(System.in);
 
-		if (index >= 0 && index < p1.size()) {
-			Produto aux = p1.get(index);
-
-			System.out.println("\nMenu de Ajuste para Produto: " + aux.getNome());
+		if (p1 != null) {
+			System.out.println("\nMenu de Ajuste para Produto: " + p1.getNome());
 			System.out.println("Digite o novo nome do produto (ou ENTER para manter o mesmo):");
 			String novoNome = sc.nextLine();
 			if (!novoNome.isEmpty()) {
-				aux.setNome(novoNome);
+				p1.setNome(novoNome);
 			}
 
 			System.out.println("Digite a nova descrição do produto (ou ENTER para manter a mesma):");
 			String novaDescricao = sc.nextLine();
 			if (!novaDescricao.isEmpty()) {
-				aux.setDescproduto(novaDescricao);
+				p1.setDescproduto(novaDescricao);
 			}
 
 			System.out.println("Selecione o novo fornecedor (ou ENTER para manter o mesmo):");
-			MenuFornecedor.SimpEsc(f1);
+			list.fornSimp();
 			String newsup = sc.nextLine();
 			int conv = Integer.valueOf(newsup);
 			if (!newsup.isEmpty()) {
-				Fornecedor sup = aux.getFornecedor();
-				sup.excItem(aux);
-				sup = f1.get(conv);
-				sup.addItem(aux);
-				aux.setFornecedor(sup);
+				Fornecedor sup = p1.getFornecedor();
+				sup.excItem(p1);
+				sup = list.forneAt(conv);
+				sup.addItem(p1);
+				p1.setFornecedor(sup);
 			}
 
 			System.out.println("Produto ajustado com sucesso:");
@@ -193,14 +152,15 @@ public class MenuProduto {
 		}
 	}
 
-	public static void searchForn(ArrayList<Produto> p1, String key) {// ok
-		Utils.clearConsole();
-
+	public static void searchForn(Shop list, String key) {
 		ArrayList<Produto> resultados = new ArrayList<>();
 
-		for (Produto produto : p1) {
-			if (produto.getNome().toLowerCase().contains(key.toLowerCase())) {
-				resultados.add(produto);
+		Produto sup = new Produto();
+		sup.setNome(key);
+
+		for (int i = 0; i < list.sizeProd(); i++) {
+			if (list.prodAt(i).equals(sup) && list.forneAt(i) != null) {
+				resultados.add(list.prodAt(i));
 			}
 		}
 

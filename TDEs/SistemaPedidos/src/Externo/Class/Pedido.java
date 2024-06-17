@@ -1,4 +1,4 @@
-package T2.Class;
+package Externo.Class;
 
 import java.util.ArrayList;
 import java.util.Date;
