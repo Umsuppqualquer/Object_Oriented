@@ -33,7 +33,7 @@ public class MenuEstoque {
 			switch (esc) {
 			case 1:
 				System.out.println("\nVocê escolheu a Opção 1. Entrada de novo lote no estoque.");
-				cadEstq(p1);
+				cadEstq(list);
 				Utils.fim();
 				break;
 			case 2:
@@ -70,7 +70,7 @@ public class MenuEstoque {
 		}
 	}
 
-	public static void cadEstq(ArrayList<Produto> p1) {
+	public static void cadEstq(Shop list) {
 		Estoque aux = new Estoque();
 		Scanner sc2 = new Scanner(System.in);
 
