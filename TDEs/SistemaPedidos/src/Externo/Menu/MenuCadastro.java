@@ -3,8 +3,7 @@ package Externo.Menu;
 import java.util.*;
 
 import Externo.Class.Cliente;
-import Geral.Shop;
-import Geral.Utils;
+import Geral.*;
 import Interno.Class.Endereco;
 
 public class MenuCadastro {
@@ -36,9 +35,12 @@ public class MenuCadastro {
 			case 3:
 				System.out.println("3. Esqueci Minha Senha.");
 				recUser(list);
+				Utils.fim();
 				break;
 			case 4:
 				System.out.println("4. Excluir Usuário.");
+				excUser(list);
+				Utils.fim();
 				break;
 			case 0:
 				System.out.println("Fim...");
@@ -90,19 +92,60 @@ public class MenuCadastro {
 
 	public static void escUser(Shop list){ //ok
 		System.out.println("\n----------------------------------------\n");
-		for (int i = 0; i < list.sizeForne(); i++) {
+		for (int i = 0; i < list.sizeUser(); i++) {
 			System.out.println("Nome: " + list.userAt(i).getNome() + "\nLogin: " + list.userAt(i).getLogin()
 					+ "\nTelefone: " + list.userAt(i).getTelefone() + "\nEmail: " + list.userAt(i).getEmail());
 			System.out.println("\n----------------------------------------\n");
 		}
 	}
 
-	public static void recUser(Shop list){
+	public static void recUser(Shop list){ //ok
 		Scanner sc2 = new Scanner(System.in);
 		System.out.println("Digite o usuário ou o email: ");
 		String aux = sc2.nextLine();
-		if(list.recSenha(aux)){
-			
+		Teste t1 = new Teste();
+		t1 = list.recSenha(aux);
+		if(t1.getTest()){
+			System.out.println("Nome/Email: " + aux);
+			System.out.println("Digite sua nova senha: ");
+			list.userAt(t1.getIndex()).setSenha(sc2.nextLine());
+			System.out.println("Senha atualizada!!!");
+		}
+		else{
+			System.out.println("Usuário não encontrado ou não cadastrado.");
+		}
+	}
+
+	public static void excUser(Shop list){
+		Scanner sc2 = new Scanner(System.in);
+		System.out.println("Digite o usuário ou o email: ");
+		String aux = sc2.nextLine();
+		Teste t1 = new Teste();
+		t1 = list.recSenha(aux);
+		if(t1.getTest()){
+			System.out.println("Usuário: " + list.userAt(t1.getIndex()).getLogin() + "Nome: " + list.userAt(t1.getIndex()).getLogin());
+			System.out.println("Deseja excluir sua conta? (Todas os seus pontos serão perdidos)");
+			System.out.println("1 - Sim / 2 - Não ");
+			int esc = sc2.nextInt();
+			while (true) {
+				switch (esc) {
+					case 1:
+						System.out.println("Foi excluido o usuário.");
+						list.excUser(list.userAt(t1.getIndex()));
+						return;
+					case 2:
+						System.out.println("Operação cancelada...");
+						return;
+					default:
+						System.out.println("Opção inválida tente.");
+						break;
+				}
+				
+			}
+
+		}
+		else{
+			System.out.println("Usuário não encontrado ou não cadastrado.");
 		}
 
 

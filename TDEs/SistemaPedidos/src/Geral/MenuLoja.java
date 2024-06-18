@@ -42,6 +42,8 @@ public class MenuLoja {
 				System.out.println("4. Cadastro Cliente.");
 				MenuCadastro.cadMenu(lista);
 				break;
+			case 5:
+				System.out.println("5. Login");
 			case 9:
 				Utils.clearConsole();
 				System.out.println("Modo Teste...");

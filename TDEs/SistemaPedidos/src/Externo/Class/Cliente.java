@@ -1,7 +1,9 @@
 package Externo.Class;
+
 import java.util.List;
 
 import Interno.Class.*;
+import Geral.*;
 
 public class Cliente extends Cadastro{
     private String login;
@@ -53,9 +55,21 @@ public class Cliente extends Cadastro{
         if (getClass() != obj.getClass())
             return false;
         Cliente aux = (Cliente) obj;
-        if(this.getLogin() != aux.getLogin() || this.getSenha() != aux.getSenha()){
+        if(this.getLogin() != aux.getLogin() || this.getSenha() != aux.getSenha())
             return false;
-        }
         return true;
+    }
+
+    public boolean valUser(Object obj){
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Cliente aux = (Cliente) obj;
+        if(this.getLogin() == aux.getLogin() || this.getEmail() == this.getEmail())
+            return true;
+        return false;
     }
 }

@@ -13,6 +13,8 @@ public class Shop {
     private List<Produto> product;
     private List<Cliente> users;
 
+    private Cliente log;
+
     public Shop(){
         this.supplyer = new ArrayList<>();
         this.product = new ArrayList<>();
@@ -97,12 +99,17 @@ public class Shop {
 		System.out.println("\n");
 	}
 
-    public boolean recSenha(String key){
+    public Teste recSenha(String key){
+        Teste t1 = new  Teste();
+
         for(int i = 0; i < this.users.size(); i++){
-            if(this.users.get(i).getNome().equalsIgnoreCase(key) || this.users.get(i).getEmail().equalsIgnoreCase(key)){
-                return true;
+            if(this.userAt(i).getLogin().equalsIgnoreCase(key) || this.userAt(i).getEmail().equalsIgnoreCase(key)){
+                t1.setIndex(i);
+                t1.setTest(true);
+                return t1;
             }
         }
-        return false;
+        t1.setTest(false);
+        return t1;
     }
 }
