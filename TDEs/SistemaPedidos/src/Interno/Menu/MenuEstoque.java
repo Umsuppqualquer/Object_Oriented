@@ -21,52 +21,59 @@ public class MenuEstoque {
 		while (true) {
 			int esc;
 
+			System.out.println("=======================================");
+			System.out.println("           Menu de Estoque              ");
+			System.out.println("=======================================");
 			System.out.println("Escolha uma opção:");
-			System.out.println("1. Entrada de novo lote no estoque.");
-			System.out.println("2. Mostrar os estoques de produto.");
-			System.out.println("3. Excluir estoque.");
-			System.out.println("4. Ajuste de estoque.");
-			System.out.println("5. Troca de fornecedor.");
-			System.out.println("0. Retornar ao menu principal.");
+			System.out.println("---------------------------------------");
+			System.out.println("1. Entrada de novo lote no estoque");
+			System.out.println("2. Mostrar os estoques de produto");
+			System.out.println("3. Excluir estoque");
+			System.out.println("4. Ajuste de estoque");
+			System.out.println("5. Troca de fornecedor");
+			System.out.println("---------------------------------------");
+			System.out.println("0. Retornar ao menu principal\n");
+			System.out.print("Opção: ");
 			esc = sc2.nextInt();
 
 			switch (esc) {
-			case 1: //ajustado
-				System.out.println("\nVocê escolheu a Opção 1. Entrada de novo lote no estoque.");
-				cadEstq(list);
-				Utils.fim();
-				break;
-			case 2: //ajustado
-				System.out.println("\nVocê escolheu a Opção 2. Mostrar os produtos com estoque.");
-				escEstq(list);
-				Utils.fim();
-				break;
-			case 3: //ajustado
-				System.out.println("\nVocê escolheu a Opção 3. Excluir estoque.");
-				list.prodSimp();
-				System.out.println("Digite o número do produto que deseja exluir:");
-				int i = sc2.nextInt();
-				if (list.prodAt(i).getEstoque() != null) {
-					System.out.println("Foi excluído o estoque do item " + list.forneAt(i).getNome());
-					list.excProd(list.prodAt(i));
-				} else {
-					System.out.println("Este produto não possui estoque cadastrado.");
-				}
-				Utils.fim();
-				break;
-			case 4:
-				System.out.println("\nVocê escolheu a Opção 4. Ajuste de estoque.");
-				ajustEstq(list);
-				Utils.fim();
-				break;
-			case 0:
-				System.out.println("\nRetornando ao menu principal...");
-				return;
-			default:
-				System.out.println("\nOpção inválida. Escolha novamente.");
-				Utils.fim();
-				break;
+				case 1:
+					System.out.println("\nVocê escolheu a Opção 1. Entrada de novo lote no estoque.");
+					cadEstq(list);
+					Utils.fim();
+					break;
+				case 2:
+					System.out.println("\nVocê escolheu a Opção 2. Mostrar os produtos com estoque.");
+					escEstq(list);
+					Utils.fim();
+					break;
+				case 3:
+					System.out.println("\nVocê escolheu a Opção 3. Excluir estoque.");
+					list.prodSimp();
+					System.out.println("Digite o número do produto que deseja excluir:");
+					int i = sc2.nextInt();
+					if (list.prodAt(i).getEstoque() != null) {
+						System.out.println("Foi excluído o estoque do item " + list.prodAt(i).getNome());
+						list.excProd(list.prodAt(i));
+					} else {
+						System.out.println("Este produto não possui estoque cadastrado.");
+					}
+					Utils.fim();
+					break;
+				case 4:
+					System.out.println("\nVocê escolheu a Opção 4. Ajuste de estoque.");
+					ajustEstq(list);
+					Utils.fim();
+					break;
+				case 0:
+					System.out.println("\nRetornando ao menu principal...");
+					return;
+				default:
+					System.out.println("\nOpção inválida. Escolha novamente.");
+					Utils.fim();
+					break;
 			}
+			
 		}
 	}
 

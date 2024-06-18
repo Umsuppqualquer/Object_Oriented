@@ -55,5 +55,13 @@ public class Pedido {
     public void addItemCarrinho(ItemPedido obj){
         carrinho.add(obj);
     }
+
+    public ItemPedido produtoAT(int i){
+        return this.carrinho.get(i);
+    }
+
+    public int produtoSize(){
+        return this.carrinho.size();
+    }
     
 }

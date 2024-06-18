@@ -1,7 +1,5 @@
 package Geral;
 
-//Ajustar o get para que retorne somente um objeto só, não a lista de objetos;
-
 import java.util.*;
 
 import Interno.Class.*;
@@ -12,8 +10,6 @@ public class Shop {
     private List<Fornecedor> supplyer;
     private List<Produto> product;
     private List<Cliente> users;
-
-    private Cliente log;
 
     public Shop(){
         this.supplyer = new ArrayList<>();
@@ -70,46 +66,93 @@ public class Shop {
     }
 
     public void prodSimp() {
-		char a = '\n';
-		System.out.println("\n----------------------------------------");
-		for (int i = 0; i < this.product.size(); i++) {
-			if (this.product.get(i).getNome().charAt(0) == a) {
-				System.out.println(i + "° - " + product.get(i).getNome()+"\n");
-			} else {
-				System.out.println(product.get(i).getNome().charAt(0));
-				System.out.println(i + "° - " + product.get(i).getNome()+"\n");
-				System.out.println("\n----------------------------------------");
-			}
-		}
-		System.out.println("\n");
-	}
+        System.out.println("\n========================================");
+        System.out.println("             Lista de Produtos           ");
+        System.out.println("========================================\n");
+    
+        char last = '\0';
+    
+        for (int i = 0; i < this.product.size(); i++) {
+            char currentInitial = this.product.get(i).getNome().charAt(0);
+            if (currentInitial != last) {
+                System.out.println(currentInitial);
+                System.out.println("----------------------------------------");
+                last = currentInitial;
+            }
+            System.out.println(i + "° - " + product.get(i).getNome());
+            System.out.println();
+        }
+        System.out.println("\n========================================\n");
+    }
 
     public void fornSimp() {
-		char a = '\n';
-		System.out.println("\n----------------------------------------");
-		for (int i = 0; i < this.supplyer.size(); i++) {
-			if (this.supplyer.get(i).getNome().charAt(0) == a) {
-				System.out.println(i + "° - " + this.supplyer.get(i).getNome()+"\n");
-			} else {
-				System.out.println(this.supplyer.get(i).getNome().charAt(0));
-				System.out.println(i + "° - " + this.supplyer.get(i).getNome()+"\n");
-				System.out.println("\n----------------------------------------");
-			}
-		}
-		System.out.println("\n");
-	}
+        System.out.println("\n========================================");
+        System.out.println("          Lista de Fornecedores          ");
+        System.out.println("========================================\n");
+        char lastInitial = '\0';
+        for (int i = 0; i < this.supplyer.size(); i++) {
+            String nomeFornecedor = this.supplyer.get(i).getNome();
+            char currentInitial = nomeFornecedor.charAt(0);
+            if (currentInitial != lastInitial) {
+                System.out.println(currentInitial);
+                System.out.println("----------------------------------------");
+                lastInitial = currentInitial;
+            }
+            System.out.println(i + "° - " + nomeFornecedor);
+            System.out.println();
+        }
+        System.out.println("\n========================================\n");
+    }
 
-    public Teste recSenha(String key){
-        Teste t1 = new  Teste();
-
-        for(int i = 0; i < this.users.size(); i++){
-            if(this.userAt(i).getLogin().equalsIgnoreCase(key) || this.userAt(i).getEmail().equalsIgnoreCase(key)){
+    public Teste recSenha(String key) {
+        Teste t1 = new Teste();
+    
+        for (int i = 0; i < this.users.size(); i++) {
+            Cliente user = this.userAt(i);
+            if (user.getLogin().equalsIgnoreCase(key) || user.getEmail().equalsIgnoreCase(key)) {
                 t1.setIndex(i);
                 t1.setTest(true);
                 return t1;
             }
         }
+    
         t1.setTest(false);
         return t1;
+    }
+
+    public Teste authUser(Cliente cliente) {
+        Teste t1 = recSenha(cliente.getLogin());
+    
+        if (t1.getTest()) {
+            Cliente clienteAutenticado = this.userAt(t1.getIndex());
+    
+            if (clienteAutenticado.autenticUser(cliente)) {
+                return t1;
+            } else {
+                t1.setTest(false);
+            }
+        } else {
+            // Login inválido
+            t1.setTest(false);
+        }
+    
+        return t1;
+    }
+    
+
+    public void showShop() {
+        System.out.println("\n========================================");
+        System.out.println("           Produtos Disponíveis        ");
+        System.out.println("========================================\n");
+        for (int i = 0; i < this.product.size(); i++) {
+            Produto produto = this.product.get(i);
+            if (produto.getEstoque() != null && produto.getEstoque().getQuantidade() != 0) {
+                System.out.println("Id: " + produto.getId() + " - " + produto.getNome());
+                System.out.println("- Estoque: " + produto.getEstoque().getQuantidade() + " unidade(s)");
+                System.out.printf("- Valor (un): R$ %.2f\n", produto.getEstoque().getPreco() * 1.17);
+                System.out.println("----------------------------------------");
+            }
+        }
+        System.out.println("\n");
     }
 }

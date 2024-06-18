@@ -19,13 +19,19 @@ public class MenuProduto {
 		while (true) {
 			int esc;
 
+			System.out.println("=======================================");
+			System.out.println("           Menu de Produto              ");
+			System.out.println("=======================================");
 			System.out.println("Escolha uma opção:");
-			System.out.println("1. Cadastro de produto.");
-			System.out.println("2. Mostrar todos os produtos.");
-			System.out.println("3. Excluir produto.");
-			System.out.println("4. Ajuste de cadastro de produto.");
-			System.out.println("5. Consulta por nome ou código.");
-			System.out.println("0. Retornar ao menu principal.\n");
+			System.out.println("---------------------------------------");
+			System.out.println("1. Cadastro de produto");
+			System.out.println("2. Mostrar todos os produtos");
+			System.out.println("3. Excluir produto");
+			System.out.println("4. Ajuste de cadastro de produto");
+			System.out.println("5. Consulta por nome ou código");
+			System.out.println("---------------------------------------");
+			System.out.println("0. Retornar ao menu principal\n");
+        	System.out.print("Opção: ");
 			esc = sc1.nextInt();
 
 			switch (esc) {
@@ -61,7 +67,7 @@ public class MenuProduto {
 				System.out.println("Digite o nome ou código do produto que deseja pesquisar:");
 				sc1.nextLine();
 				String key = sc1.nextLine();
-				searchForn(list, key);
+				searchProd(list, key);
 				Utils.fim();
 				break;
 			case 0:
@@ -152,7 +158,7 @@ public class MenuProduto {
 		}
 	}
 
-	public static void searchForn(Shop list, String key) {
+	public static void searchProd(Shop list, String key) {
 		ArrayList<Produto> resultados = new ArrayList<>();
 
 		Produto sup = new Produto();

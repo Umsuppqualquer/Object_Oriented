@@ -1,4 +1,5 @@
 package Interno.Class;
+
 public class Cadastro {
 
     private String nome;
@@ -8,6 +9,13 @@ public class Cadastro {
 
     public Cadastro (){
 
+    }
+
+    public Cadastro(String nome, String telefone, String email, Endereco local) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.local = local;
     }
 
     public void setNome(String nome) {

@@ -8,6 +8,11 @@ public class Estoque {
 
 	}
 
+	public Estoque(int quantidade, double preco){
+		this.quantidade = quantidade;
+		this.preco = preco;
+	}
+
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}

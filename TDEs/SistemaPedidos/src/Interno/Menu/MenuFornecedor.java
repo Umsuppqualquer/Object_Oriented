@@ -19,13 +19,20 @@ public class MenuFornecedor {
 		while (true) {
 			int esc;
 
+			System.out.println("=======================================");
+			System.out.println("           Menu de Fornecedor           ");
+			System.out.println("=======================================");
 			System.out.println("Escolha uma opção:");
-			System.out.println("1. Cadastro de fornecedor.");
-			System.out.println("2. Mostrar todos os fornecedores.");
-			System.out.println("3. Excluir fornecedor.");
-			System.out.println("4. Ajuste de cadastro de fornecedor.");
-			System.out.println("5. Consulta por nome ou código.");
-			System.out.println("0. Sair.\n");
+			System.out.println("---------------------------------------");
+			System.out.println("1. Cadastro de fornecedor");
+			System.out.println("2. Mostrar todos os fornecedores");
+			System.out.println("3. Excluir fornecedor");
+			System.out.println("4. Ajuste de cadastro de fornecedor");
+			System.out.println("5. Consulta por nome ou código");
+			System.out.println("---------------------------------------");
+			System.out.println("0. Retornar ao menu principal\n");
+			System.out.print("Opção: ");
+
 			esc = sc1.nextInt();
 
 			switch (esc) {
@@ -65,7 +72,7 @@ public class MenuFornecedor {
 				Utils.fim();
 				break;
 			case 0:
-				System.out.println("Saindo...");
+				System.out.println("\nRetornando ao menu principal...");
 				return;
 			default:
 				System.out.println("Opção inválida. Escolha novamente.");

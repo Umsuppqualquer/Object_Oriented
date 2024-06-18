@@ -14,12 +14,18 @@ public class MenuCadastro {
 
 		while (true) {
 			Utils.clearConsole();
+			System.out.println("=======================================");
+			System.out.println("           Menu de Cadastro            ");
+			System.out.println("=======================================");
 			System.out.println("Selecione uma opção:");
-			System.out.println("1. Cadastrar Usuário.");
-			System.out.println("2. Usuários Cadastrados." );
-			System.out.println("3. Esqueci minha senha.");
-			System.out.println("4. Excluir conta.");
-			System.out.println("0. Sair\n");
+			System.out.println("---------------------------------------");
+			System.out.println("1. Cadastrar Usuário");
+			System.out.println("2. Usuários Cadastrados");
+			System.out.println("3. Esqueci minha senha");
+			System.out.println("4. Excluir conta");
+			System.out.println("---------------------------------------");
+			System.out.println("0. Retornar ao menu principal\n");
+			System.out.print("Opção: ");
 			esc = sc1.nextInt();
 			switch (esc) {
 			case 1:
@@ -43,7 +49,7 @@ public class MenuCadastro {
 				Utils.fim();
 				break;
 			case 0:
-				System.out.println("Fim...");
+				System.out.println("\nRetornando ao menu principal...");
 				return;
 			default:
 				System.out.println("Opção inválida. Escolha novamente.");
@@ -90,11 +96,15 @@ public class MenuCadastro {
 		return;
 	}
 
-	public static void escUser(Shop list){ //ok
-		System.out.println("\n----------------------------------------\n");
+	public static void escUser(Shop list) {
+		System.out.println("\n========================================\n");
+		System.out.println("         Lista de Usuários              ");
+		System.out.println("\n========================================\n");
+	
 		for (int i = 0; i < list.sizeUser(); i++) {
-			System.out.println("Nome: " + list.userAt(i).getNome() + "\nLogin: " + list.userAt(i).getLogin()
-					+ "\nTelefone: " + list.userAt(i).getTelefone() + "\nEmail: " + list.userAt(i).getEmail());
+			System.out.println("Nome: " + list.userAt(i).getNome());
+			System.out.println("Login: " + list.userAt(i).getLogin());
+			System.out.println("Email: " + list.userAt(i).getEmail());
 			System.out.println("\n----------------------------------------\n");
 		}
 	}

@@ -3,7 +3,6 @@ package Externo.Class;
 import java.util.List;
 
 import Interno.Class.*;
-import Geral.*;
 
 public class Cliente extends Cadastro{
     private String login;
@@ -13,6 +12,14 @@ public class Cliente extends Cadastro{
 
     public Cliente(){
 
+    }
+
+    public Cliente(String nome, String telefone, String email, Endereco local,String login, String senha, String cartaoCredito){
+        super(nome, telefone, email, local); //da para chamar deste jeito o construtor da classe cadastro
+        
+        this.login = login;
+        this.senha = senha;
+        this.cartaoCredito = cartaoCredito;
     }
 
     public void setLogin(String login) {
@@ -48,15 +55,17 @@ public class Cliente extends Cadastro{
     }
 
     public boolean autenticUser(Object obj) {
-        if(this == obj)
+        if (this == obj)
             return true;
-        if (obj == null)
+    
+        if (obj == null || getClass() != obj.getClass())
             return false;
-        if (getClass() != obj.getClass())
-            return false;
+    
         Cliente aux = (Cliente) obj;
-        if(this.getLogin() != aux.getLogin() || this.getSenha() != aux.getSenha())
+    
+        if (!this.getLogin().equals(aux.getLogin()) || !this.getSenha().equals(aux.getSenha()))
             return false;
+    
         return true;
     }
 
