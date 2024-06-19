@@ -2,6 +2,7 @@ package Externo.Class;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 //A classe pedido não herda cliente, ela tem que ter um cliente
 
@@ -11,7 +12,7 @@ public class Pedido {
     private Date dataPedido;
     private Date dataEntrega;
     private String situação;
-    private ArrayList<ItemPedido> carrinho;
+    private List<ItemPedido> carrinho;
 
     public Pedido(){
         this.numero = cont;

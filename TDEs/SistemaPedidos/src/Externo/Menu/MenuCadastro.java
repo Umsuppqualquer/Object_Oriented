@@ -2,9 +2,9 @@ package Externo.Menu;
 
 import java.util.*;
 
-import Externo.Class.Cliente;
+import Externo.Class.*;
 import Geral.*;
-import Interno.Class.Endereco;
+import Interno.Class.*;
 
 public class MenuCadastro {
 

@@ -2,12 +2,9 @@ package Geral;
 
 import java.util.*;
 
-import Externo.Class.Cliente;
-import Externo.Menu.MenuCadastro;
-import Externo.Menu.MenuCliente;
-import Interno.Menu.MenuEstoque;
-import Interno.Menu.MenuFornecedor;
-import Interno.Menu.MenuProduto;
+import Externo.Class.*;
+import Externo.Menu.*;
+import Interno.Menu.*;
 
 public class MenuLoja {
 	public static void main(String[] args) {

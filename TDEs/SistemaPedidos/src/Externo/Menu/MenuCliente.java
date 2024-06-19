@@ -3,8 +3,9 @@ package Externo.Menu;
 import java.util.Scanner;
 
 import Geral.*;
-import Interno.Class.Produto;
-import Externo.Class.*;
+import Externo.Class.Cliente;
+import Externo.Class.ItemPedido;
+import Externo.Class.Pedido;
 
 public class MenuCliente {
 
@@ -32,10 +33,12 @@ public class MenuCliente {
 			esc = sc1.nextInt();
 			switch (esc) {
 			case 1:
-				System.out.println("1. Buscar produtos.");
+				Utils.clearConsole();
                 list.showShop();
+				ItemPedido novo = new ItemPedido();
 				System.out.println("Digite o id, do item que deseja comprar.");
 				int aux = sc1.nextInt();
+				System.out.println("Digite a quantidade que gostaria de adicionar ao carrinho.");
 
 				Utils.fim();
 				break;
