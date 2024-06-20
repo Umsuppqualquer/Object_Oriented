@@ -9,9 +9,8 @@ import Externo.Class.Pedido;
 
 public class MenuCliente {
 
-    public static void menuUser(Cliente log, Shop list){
+    public static void menuUser(Cliente log, Shop list, Scanner sc){
         int esc = 1;
-		Scanner sc1 = new Scanner(System.in);
 		Pedido p1 = new Pedido();
 
         System.out.println("Ola: " +  log.getNome() + "\n");
@@ -30,14 +29,14 @@ public class MenuCliente {
 			System.out.println("---------------------------------------");
 			System.out.println("0. Retornar ao menu principal\n");
 			System.out.print("Opção: ");
-			esc = sc1.nextInt();
+			esc = sc.nextInt();
 			switch (esc) {
 			case 1:
 				Utils.clearConsole();
                 list.showShop();
 				ItemPedido novo = new ItemPedido();
 				System.out.println("Digite o id, do item que deseja comprar.");
-				int aux = sc1.nextInt();
+				int aux = sc.nextInt();
 				System.out.println("Digite a quantidade que gostaria de adicionar ao carrinho.");
 
 				Utils.fim();
@@ -68,7 +67,7 @@ public class MenuCliente {
     }
 
     /*public static void itensSale(Cliente c1, Shop list){ //organizando
-		Scanner sc2 = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		int esc;
 
 		list.showShop();

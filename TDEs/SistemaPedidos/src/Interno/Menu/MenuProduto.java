@@ -10,11 +10,9 @@ import Interno.Class.Produto;
 
 public class MenuProduto {
 
-	public static void ProMenu(Shop list) {
+	public static void ProMenu(Shop list, Scanner sc) {
 
 		Utils.clearConsole();
-
-		Scanner sc1 = new Scanner(System.in);
 
 		while (true) {
 			int esc;
@@ -32,12 +30,12 @@ public class MenuProduto {
 			System.out.println("---------------------------------------");
 			System.out.println("0. Retornar ao menu principal\n");
         	System.out.print("Opção: ");
-			esc = sc1.nextInt();
+			esc = sc.nextInt();
 
 			switch (esc) {
 			case 1: //corrigido
 				System.out.println("\nVocê escolheu a Opção 1. Cadastro de produto.");
-				cadProd(list);
+				cadProd(list,sc);
 				Utils.fim();
 				break;
 			case 2: //corrigido
@@ -49,7 +47,7 @@ public class MenuProduto {
 				System.out.println("\nVocê escolheu a Opção 3. Excluir produto.");
 				list.prodSimp();
 				System.out.println("Digite o número do produto que deseja excluir:");
-				int i = sc1.nextInt();
+				int i = sc.nextInt();
 				Produto aux = list.prodAt(i);
 				list.excProd(aux);
 				Utils.fim();
@@ -58,15 +56,15 @@ public class MenuProduto {
 				System.out.println("\nVocê escolheu a Opção 4. Ajuste de cadastro de produto.");
 				list.prodSimp();
 				System.out.println("Digite o número do produto que deseja ajustar:");
-				int j = sc1.nextInt();
-				AjustProd(list.prodAt(j),list);
+				int j = sc.nextInt();
+				AjustProd(list.prodAt(j),list,sc);
 				Utils.fim();
 				break;
 			case 5:
 				System.out.println("\nVocê escolheu a Opção 5. Consulta por nome ou código.");
 				System.out.println("Digite o nome ou código do produto que deseja pesquisar:");
-				sc1.nextLine();
-				String key = sc1.nextLine();
+				sc.nextLine();
+				String key = sc.nextLine();
 				searchProd(list, key);
 				Utils.fim();
 				break;
@@ -81,19 +79,17 @@ public class MenuProduto {
 		}
 	}
 
-	public static void cadProd(Shop list) { //revisado
-
-		Scanner sc2 = new Scanner(System.in);
+	public static void cadProd(Shop list, Scanner sc) { //revisado
 		Fornecedor aux = new Fornecedor();
 		Produto p = new Produto();
 
 		System.out.println("\nDigite o nome do produto:");
-		p.setNome(sc2.nextLine());
+		p.setNome(sc.nextLine());
 		System.out.println("\nDigite a descrição do produto:");
-		p.setDescproduto(sc2.nextLine());
+		p.setDescproduto(sc.nextLine());
 		System.out.println("\nSelecione o fornecedor:");
 		list.fornSimp();;
-		aux = list.forneAt(sc2.nextInt());
+		aux = list.forneAt(sc.nextInt());
 		p.setFornecedor(aux);
 		aux.addItem(p);
 
@@ -123,8 +119,7 @@ public class MenuProduto {
 		});
 	}
 
-	public static void AjustProd(Produto p1, Shop list) {
-		Scanner sc = new Scanner(System.in);
+	public static void AjustProd(Produto p1, Shop list, Scanner sc) {
 
 		if (p1 != null) {
 			System.out.println("\nMenu de Ajuste para Produto: " + p1.getNome());

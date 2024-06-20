@@ -8,9 +8,8 @@ import Interno.Class.*;
 
 public class MenuCadastro {
 
-	public static void cadMenu(Shop list) {
+	public static void cadMenu(Shop list, Scanner sc) {
 		int esc = 1;
-		Scanner sc1 = new Scanner(System.in);
 
 		while (true) {
 			Utils.clearConsole();
@@ -26,11 +25,11 @@ public class MenuCadastro {
 			System.out.println("---------------------------------------");
 			System.out.println("0. Retornar ao menu principal\n");
 			System.out.print("Opção: ");
-			esc = sc1.nextInt();
+			esc = sc.nextInt();
 			switch (esc) {
 			case 1:
 				System.out.println("1. Cadastrar Usuário.");
-				cadUser(list);
+				cadUser(list,sc);
 				Utils.fim();
 				break;
 			case 2:
@@ -40,12 +39,12 @@ public class MenuCadastro {
 				break;
 			case 3:
 				System.out.println("3. Esqueci Minha Senha.");
-				recUser(list);
+				recUser(list,sc);
 				Utils.fim();
 				break;
 			case 4:
 				System.out.println("4. Excluir Usuário.");
-				excUser(list);
+				excUser(list,sc);
 				Utils.fim();
 				break;
 			case 0:
@@ -59,35 +58,34 @@ public class MenuCadastro {
 	
 	}
 
-	public static void cadUser(Shop list){ //ok
-		Scanner	sc2 = new Scanner(System.in);
+	public static void cadUser(Shop list, Scanner sc){ //ok
 		Endereco aux = new Endereco();
 		Cliente c = new Cliente();
 
 		System.out.println("\nDigite o seu nome:");
-		c.setNome(sc2.nextLine());
+		c.setNome(sc.nextLine());
 		System.out.println("\nDigite o nome do seu Usuário:");
-		c.setLogin(sc2.nextLine());
+		c.setLogin(sc.nextLine());
 		System.out.println("\nAgora uma senha:");
-		c.setSenha(sc2.nextLine());
+		c.setSenha(sc.nextLine());
 		System.out.println("\nDigite o email do fornecedor:");
-		c.setEmail(sc2.nextLine());
+		c.setEmail(sc.nextLine());
 		System.out.println("Telefone para contato: ");
-		c.setTelefone(sc2.nextLine());
+		c.setTelefone(sc.nextLine());
 		System.out.println("\nEndereço para a entrega rua:");
-		aux.setRua(sc2.nextLine());
+		aux.setRua(sc.nextLine());
 		System.out.println("\nNúmero da residência:");
-		aux.setNumero(sc2.nextLine());
+		aux.setNumero(sc.nextLine());
 		System.out.println("\nComplemento:");
-		aux.setComplmento(sc2.nextLine());
+		aux.setComplmento(sc.nextLine());
 		System.out.println("\nBairro:");
-		aux.setBairro(sc2.nextLine());
+		aux.setBairro(sc.nextLine());
 		System.out.println("\nCódigo CEP:");
-		aux.setCep(sc2.nextLine());
+		aux.setCep(sc.nextLine());
 		System.out.println("\nCidade:");
-		aux.setCidade(sc2.nextLine());
+		aux.setCidade(sc.nextLine());
 		System.out.println("\nEstado:");
-		aux.setEstado(sc2.nextLine());
+		aux.setEstado(sc.nextLine());
 
 		c.setLocal(aux);
 
@@ -109,16 +107,15 @@ public class MenuCadastro {
 		}
 	}
 
-	public static void recUser(Shop list){ //ok
-		Scanner sc2 = new Scanner(System.in);
+	public static void recUser(Shop list, Scanner sc){ //ok
 		System.out.println("Digite o usuário ou o email: ");
-		String aux = sc2.nextLine();
+		String aux = sc.nextLine();
 		Teste t1 = new Teste();
 		t1 = list.recSenha(aux);
 		if(t1.getTest()){
 			System.out.println("Nome/Email: " + aux);
 			System.out.println("Digite sua nova senha: ");
-			list.userAt(t1.getIndex()).setSenha(sc2.nextLine());
+			list.userAt(t1.getIndex()).setSenha(sc.nextLine());
 			System.out.println("Senha atualizada!!!");
 		}
 		else{
@@ -126,17 +123,16 @@ public class MenuCadastro {
 		}
 	}
 
-	public static void excUser(Shop list){
-		Scanner sc2 = new Scanner(System.in);
+	public static void excUser(Shop list, Scanner sc){
 		System.out.println("Digite o usuário ou o email: ");
-		String aux = sc2.nextLine();
+		String aux = sc.nextLine();
 		Teste t1 = new Teste();
 		t1 = list.recSenha(aux);
 		if(t1.getTest()){
 			System.out.println("Usuário: " + list.userAt(t1.getIndex()).getLogin() + "Nome: " + list.userAt(t1.getIndex()).getLogin());
 			System.out.println("Deseja excluir sua conta? (Todas os seus pontos serão perdidos)");
 			System.out.println("1 - Sim / 2 - Não ");
-			int esc = sc2.nextInt();
+			int esc = sc.nextInt();
 			while (true) {
 				switch (esc) {
 					case 1:

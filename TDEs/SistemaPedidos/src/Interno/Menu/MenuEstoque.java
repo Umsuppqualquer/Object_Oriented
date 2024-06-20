@@ -12,11 +12,9 @@ import Interno.Class.Produto;
 
 public class MenuEstoque {
 
-	public static void EstqMenu(Shop list) {
+	public static void EstqMenu(Shop list, Scanner sc) {
 
 		Utils.clearConsole();
-
-		Scanner sc2 = new Scanner(System.in);
 
 		while (true) {
 			int esc;
@@ -34,12 +32,12 @@ public class MenuEstoque {
 			System.out.println("---------------------------------------");
 			System.out.println("0. Retornar ao menu principal\n");
 			System.out.print("Opção: ");
-			esc = sc2.nextInt();
+			esc = sc.nextInt();
 
 			switch (esc) {
 				case 1:
 					System.out.println("\nVocê escolheu a Opção 1. Entrada de novo lote no estoque.");
-					cadEstq(list);
+					cadEstq(list, sc);
 					Utils.fim();
 					break;
 				case 2:
@@ -51,7 +49,7 @@ public class MenuEstoque {
 					System.out.println("\nVocê escolheu a Opção 3. Excluir estoque.");
 					list.prodSimp();
 					System.out.println("Digite o número do produto que deseja excluir:");
-					int i = sc2.nextInt();
+					int i = sc.nextInt();
 					if (list.prodAt(i).getEstoque() != null) {
 						System.out.println("Foi excluído o estoque do item " + list.prodAt(i).getNome());
 						list.excProd(list.prodAt(i));
@@ -62,7 +60,7 @@ public class MenuEstoque {
 					break;
 				case 4:
 					System.out.println("\nVocê escolheu a Opção 4. Ajuste de estoque.");
-					ajustEstq(list);
+					ajustEstq(list, sc);
 					Utils.fim();
 					break;
 				case 0:
@@ -77,20 +75,19 @@ public class MenuEstoque {
 		}
 	}
 
-	public static void cadEstq(Shop list) { //corrigido
+	public static void cadEstq(Shop list, Scanner sc) { //corrigido
 		Estoque aux = new Estoque();
-		Scanner sc2 = new Scanner(System.in);
 
 		System.out.println("\nSelecione o produto no qual deseja dar entrada:");
 		list.prodSimp();
-		int i = sc2.nextInt();
+		int i = sc.nextInt();
 
 		System.out.println("Digite a quantidade:");
-		int j = sc2.nextInt();
+		int j = sc.nextInt();
 		aux.setQuantidade(j);
 
 		System.out.println("Digite o valor:");
-		double val = sc2.nextDouble();
+		double val = sc.nextDouble();
 		aux.setPreco(val);
 
 		list.prodAt(i).setQuantidade(aux);
@@ -118,11 +115,10 @@ public class MenuEstoque {
 		}
 	}
 
-	public static void excEstq(ArrayList<Produto> p1, int index) {
-		Scanner sc2 = new Scanner(System.in);
+	public static void excEstq(ArrayList<Produto> p1, int index, Scanner sc) {
 		System.out.println("\nConfirmar exclusão de estoque: " + p1.get(index).getNome());
 		System.out.println("1 - Sim\n" + "2 - Não");
-		int op = sc2.nextInt();
+		int op = sc.nextInt();
 		while (true) {
 			switch (op) {
 			case 1:
@@ -139,8 +135,7 @@ public class MenuEstoque {
 		}
 	}
 
-	public static void ajustEstq(Shop list) {
-		Scanner sc2 = new Scanner(System.in);
+	public static void ajustEstq(Shop list, Scanner sc) {
 		while (true) {
 			System.out.println("\nSelecione o produto que deseja alterar o estoque (ou digite 0 para sair):");
 			for (int i = 0; i < list.sizeProd(); i++) {
@@ -148,7 +143,7 @@ public class MenuEstoque {
 					System.out.println((i) + ". " + list.forneAt(i).getNome() + " - " + list.forneAt(i).getDescricao());
 				}
 			}
-			int escolha = sc2.nextInt();
+			int escolha = sc.nextInt();
 			if (escolha == 0) {
 				break;
 			} else if (escolha > 0 && escolha <= list.sizeProd()) {
@@ -157,11 +152,11 @@ public class MenuEstoque {
 				System.out.println("Quantidade atual: " + estqaux.getQuantidade() + " / Preço: R$"
 						+ estqaux.getPreco());
 				System.out.println("Digite a nova quantidade:");
-				int novaQuantidade = sc2.nextInt();
+				int novaQuantidade = sc.nextInt();
 				estqaux.setQuantidade(novaQuantidade);
 				System.out.println("Quantidade alterada com sucesso para: " + estqaux.getQuantidade());
 				System.out.println("Digite o novo valor:");
-				double novoPreco = sc2.nextDouble();
+				double novoPreco = sc.nextDouble();
 				estqaux.setPreco(novoPreco);
 				System.out.println("Preço alterado com sucesso para: R$" + estqaux.getPreco()); 
 

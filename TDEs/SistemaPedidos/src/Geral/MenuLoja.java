@@ -10,7 +10,7 @@ public class MenuLoja {
 	public static void main(String[] args) {
 		Shop lista = new Shop();
 		int esc = 1;
-		Scanner sc1 = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 
 		Cliente log = new Cliente();
 		Teste t1 = new Teste();
@@ -32,23 +32,23 @@ public class MenuLoja {
 			System.out.println("9. Modo teste");
 			System.out.println("0. Sair\n");
 			System.out.print("Opção: ");
-			esc = sc1.nextInt();
+			esc = sc.nextInt();
 			switch (esc) {
 			case 1:
 				System.out.println("1. Fornecedor"); //revisado
-				MenuFornecedor.SupMenu(lista);
+				MenuFornecedor.SupMenu(lista,sc);
 				break;
 			case 2:
 				System.out.println("2. Produto");
-				MenuProduto.ProMenu(lista);
+				MenuProduto.ProMenu(lista,sc);
 				break;
 			case 3:
 				System.out.println("3. Estoque");
-				MenuEstoque.EstqMenu(lista);
+				MenuEstoque.EstqMenu(lista,sc);
 				break;
 			case 4:
 				System.out.println("4. Cadastro Cliente.");
-				MenuCadastro.cadMenu(lista);
+				MenuCadastro.cadMenu(lista,sc);
 				break;
 			case 5:
 				Utils.clearConsole();
@@ -56,13 +56,13 @@ public class MenuLoja {
 				System.out.println("           LOGIN              ");
 				System.out.println("------------------------------");
 
-				sc1.nextLine();
+				sc.nextLine();
 			
 				System.out.print("Usuário: ");
-				String usuario = sc1.nextLine();
+				String usuario = sc.nextLine();
 			
 				System.out.print("Senha: ");
-				String senha = sc1.nextLine();
+				String senha = sc.nextLine();
 			
 				log.setLogin(usuario);
 				log.setSenha(senha);
@@ -74,7 +74,7 @@ public class MenuLoja {
 				if (t1.getTest()) {
 					System.out.println("Login bem-sucedido! Bem-vindo, " + lista.userAt(t1.getIndex()).getNome() + ".");
 					Utils.fim();
-					MenuCliente.menuUser(lista.userAt(t1.getIndex()), lista);
+					MenuCliente.menuUser(lista.userAt(t1.getIndex()), lista,sc);
 				} else {
 					System.out.println("Usuário ou senha inválido, tente novamente.");
 				}
@@ -88,10 +88,10 @@ public class MenuLoja {
 				System.out.println("       Modo Teste Ativado!             ");
 				System.out.println("=======================================");
 				Utils.fim();
-				sc1.close();
 				break;
 			case 0:
 				System.out.println("Fim...");
+				sc.close();
 				return;
 			default:
 				System.out.println("Opção inválida. Escolha novamente.");
