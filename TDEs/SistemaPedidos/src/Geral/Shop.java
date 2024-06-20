@@ -1,3 +1,11 @@
+//Lembrar de salvar está classe em um arquivo, ver anotações de aula. (Tentar fazer em json);
+
+//Sempre sobrescrever tudo.
+
+//Criar objeto e ir chamando os menus
+
+//Adcionar try catch;
+
 package Geral;
 
 import java.util.*;
