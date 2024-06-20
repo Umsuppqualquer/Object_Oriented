@@ -6,6 +6,8 @@
 
 //Adcionar try catch;
 
+//Passar por parametro os scanners
+
 package Geral;
 
 import java.util.*;

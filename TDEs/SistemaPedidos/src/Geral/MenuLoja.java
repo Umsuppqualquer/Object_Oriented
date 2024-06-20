@@ -88,6 +88,7 @@ public class MenuLoja {
 				System.out.println("       Modo Teste Ativado!             ");
 				System.out.println("=======================================");
 				Utils.fim();
+				sc1.close();
 				break;
 			case 0:
 				System.out.println("Fim...");
