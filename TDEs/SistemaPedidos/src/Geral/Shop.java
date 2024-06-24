@@ -165,4 +165,19 @@ public class Shop {
         }
         System.out.println("\n");
     }
+
+    public Produto returnId(int id){
+        for (int i = 0; i < this.product.size(); i++) {
+            Cliente user = this.userAt(i);
+            if (this.prodAt(i).getId() == id){
+                return prodAt(i);
+            }
+            else{
+                return false;
+            }
+        }
+    
+        t1.setTest(false);
+        return t1;
+    }
 }

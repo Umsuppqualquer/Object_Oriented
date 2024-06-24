@@ -36,8 +36,9 @@ public class MenuCliente {
                 list.showShop();
 				ItemPedido novo = new ItemPedido();
 				System.out.println("Digite o id, do item que deseja comprar.");
-				int aux = sc.nextInt();
+				int id = sc.nextInt();
 				System.out.println("Digite a quantidade que gostaria de adicionar ao carrinho.");
+				novo.setNome();
 
 				Utils.fim();
 				break;
