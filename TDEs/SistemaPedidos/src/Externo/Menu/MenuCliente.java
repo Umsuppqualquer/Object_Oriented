@@ -33,18 +33,34 @@ public class MenuCliente {
 			switch (esc) {
 			case 1:
 				Utils.clearConsole();
-                list.showShop();
-				ItemPedido novo = new ItemPedido();
-				System.out.println("Digite o id, do item que deseja comprar.");
-				int id = sc.nextInt();
-				System.out.println("Digite a quantidade que gostaria de adicionar ao carrinho.");
-				novo.setNome();
-
+				while (true) {
+					list.showShop();
+					ItemPedido novo = new ItemPedido();
+					System.out.println("Digite o id, do item que deseja comprar.");
+					int id = sc.nextInt();
+					Teste t1 = list.returnId(id);
+				if(t1.getTest()){
+					novo.setNome(list.prodAt(t1.getIndex()).getNome());
+					System.out.println("Digite a quantidade que gostaria de adicionar ao carrinho.");
+					int qntd = sc.nextInt();
+					novo.setQuantidade(qntd);
+					novo.setPreco((float) (qntd * list.prodAt(t1.getIndex()).getEstoque().getPreco() * 1.17));
+					Utils.clearConsole();
+					System.out.println("Item adicionado ao carrinho: ");
+					list.showItem(novo);
+					log.getCarrinho().addItemCarrinho(novo);
+					break;
+				}
+				else{
+					Utils.clearConsole();
+					System.out.println("Id digitado indisponível.");
+				}
+				}
 				Utils.fim();
 				break;
 			case 2:
 				System.out.println("2. Carrinho de compras.");
-				//showCart(p1);			
+				showCart(p1);			
 				Utils.fim();
 				break;
 			case 3:

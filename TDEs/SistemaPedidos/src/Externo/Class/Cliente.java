@@ -1,5 +1,6 @@
 package Externo.Class;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Interno.Class.*;
@@ -8,9 +9,12 @@ public class Cliente extends Cadastro{
     private String login;
     private String senha;
     private String cartaoCredito;
-    private List<Pedido> pedidos; //tem que ser armazenado os pedidos no qual este cliente fez
+    private Pedido carrinho;
+    private List<Pedido> historico; //tem que ser armazenado os pedidos no qual este cliente fez
 
     public Cliente(){
+        this.carrinho = new Pedido();
+        this.historico = new ArrayList<Pedido>();
 
     }
 
@@ -20,6 +24,8 @@ public class Cliente extends Cadastro{
         this.login = login;
         this.senha = senha;
         this.cartaoCredito = cartaoCredito;
+        this.carrinho = new Pedido();
+        this.historico = new ArrayList<Pedido>();
     }
 
     public void setLogin(String login) {
@@ -46,12 +52,16 @@ public class Cliente extends Cadastro{
         return cartaoCredito;
     }
 
+    public Pedido getCarrinho(){
+        return carrinho;
+    }
+
     public void addPedido(Pedido t1){
-        this.pedidos.add(t1);
+        this.historico.add(t1);
     }
 
     public void excPedido(Pedido t1){
-        this.pedidos.remove(t1);
+        this.historico.remove(t1);
     }
 
     public boolean autenticUser(Object obj) {
@@ -80,5 +90,8 @@ public class Cliente extends Cadastro{
         if(this.getLogin() == aux.getLogin() || this.getEmail() == this.getEmail())
             return true;
         return false;
+    }
+
+    public void showCart(){
     }
 }

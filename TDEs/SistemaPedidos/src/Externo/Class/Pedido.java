@@ -63,6 +63,9 @@ public class Pedido {
 
     public int produtoSize(){
         return this.carrinho.size();
+    }    
+
+    public void showItens(){
+        
     }
-    
 }

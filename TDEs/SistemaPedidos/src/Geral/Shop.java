@@ -166,18 +166,25 @@ public class Shop {
         System.out.println("\n");
     }
 
-    public Produto returnId(int id){
+    public void showItem(ItemPedido p1){
+        System.out.println("========================================\n");
+        System.out.println("Nome: " + p1.getNome());
+        System.out.println("- Qntd: " + p1.getQuantidade() + " unidade(s)");
+        System.out.printf("- Valor (un): R$ %.2f\n", p1.getPreco());
+        System.out.println("----------------------------------------");
+    
+    }
+
+    public Teste returnId(int id){
+        Teste t1 = new Teste();
         for (int i = 0; i < this.product.size(); i++) {
-            Cliente user = this.userAt(i);
             if (this.prodAt(i).getId() == id){
-                return prodAt(i);
-            }
-            else{
-                return false;
+                t1.setIndex(i);
+                t1.setTest(true);
+                return t1;
             }
         }
-    
-        t1.setTest(false);
+        t1.setTest(false);         
         return t1;
     }
 }
