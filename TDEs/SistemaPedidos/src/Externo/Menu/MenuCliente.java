@@ -5,13 +5,11 @@ import java.util.Scanner;
 import Geral.*;
 import Externo.Class.Cliente;
 import Externo.Class.ItemPedido;
-import Externo.Class.Pedido;
 
 public class MenuCliente {
 
     public static void menuUser(Cliente log, Shop list, Scanner sc){
         int esc = 1;
-		Pedido p1 = new Pedido();
 
         System.out.println("Ola: " +  log.getNome() + "\n");
 
@@ -49,6 +47,7 @@ public class MenuCliente {
 					System.out.println("Item adicionado ao carrinho: ");
 					list.showItem(novo);
 					log.getCarrinho().addItemCarrinho(novo);
+					Utils.fim();
 					break;
 				}
 				else{
@@ -56,21 +55,33 @@ public class MenuCliente {
 					System.out.println("Id digitado indisponível.");
 				}
 				}
-				Utils.fim();
-				break;
 			case 2:
-				System.out.println("2. Carrinho de compras.");
-				showCart(p1);			
+				Utils.clearConsole();
+				log.getCarrinho().showItens();	
 				Utils.fim();
 				break;
 			case 3:
-				System.out.println("3. Finalizar pedido");
+				Utils.clearConsole();
+				log.getCarrinho().showItens();
+				System.out.println("Gostaria de confirmar o pedido");
+				System.out.println("0 - Não / 1 - Sim");
+				if(sc.nextInt() == 1){
+					System.out.println("Informe o número do cartão que será utilizado no pagamento.");
+					log.getCarrinho().endPedido();
+					log.setCartaoCredito(sc.nextLine());
+					log.addHistorico(log.getCarrinho());
+					log.clearCart();
+					System.out.println("Pedido realizado com sucesso.");
+					Utils.fim();
+					break;
 
-				Utils.fim();
-				break;
+				}
+				else{
+					break;
+				}
 			case 4:
 				System.out.println("4. Meus pedidos.");
-				
+				log.showPedidos();				
 				Utils.fim();
 				break;
 			case 0:
@@ -81,28 +92,5 @@ public class MenuCliente {
 				Utils.fim();
 			}
 		}
-    }
-
-    /*public static void itensSale(Cliente c1, Shop list){ //organizando
-		Scanner sc = new Scanner(System.in);
-		int esc;
-
-		list.showShop();
-
-    }*/
-
-	/*public static void showCart(Pedido p1){
-
-		for (int i = 0; i < p1.produtoSize(); i++) {
-            ItemPedido = this.product.get(i);
-            if (produto.getEstoque() != null && produto.getEstoque().getQuantidade() != 0) {
-                System.out.println("Id: " + produto.getId() + " - " + produto.getNome());
-                System.out.println("- Quantidade: " + produto.getEstoque().getQuantidade() + " unidade(s)");
-                System.out.printf("- Valor (un): R$ %.2f\n", produto.getEstoque().getPreco() * produto.get);
-                System.out.println("----------------------------------------");
-            }
-        }
-
-	}*/
-    
+    }    
 }

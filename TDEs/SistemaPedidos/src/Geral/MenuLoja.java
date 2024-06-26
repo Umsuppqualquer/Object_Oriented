@@ -29,6 +29,7 @@ public class MenuLoja {
 			System.out.println("4. Cadastro Cliente");
 			System.out.println("5. Login");
 			System.out.println("---------------------------------------");
+			System.out.println("6. Pedidos em aberto");
 			System.out.println("9. Modo teste");
 			System.out.println("0. Sair\n");
 			System.out.print("Opção: ");

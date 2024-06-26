@@ -56,12 +56,20 @@ public class Cliente extends Cadastro{
         return carrinho;
     }
 
-    public void addPedido(Pedido t1){
+    public void addHistorico(Pedido t1){
         this.historico.add(t1);
     }
 
-    public void excPedido(Pedido t1){
+    public void excHistorico(Pedido t1){
         this.historico.remove(t1);
+    }
+
+    public int sizeHistorico(){
+        return this.historico.size();
+    }
+
+    public Pedido pedidoAt(int i){
+        return this.historico.get(i);
     }
 
     public boolean autenticUser(Object obj) {
@@ -92,6 +100,21 @@ public class Cliente extends Cadastro{
         return false;
     }
 
-    public void showCart(){
+    public void clearCart(){ //arrumar isto não pode simplesmente deixar nulo tem que zerar
+        this.carrinho = null;
+    }
+
+    public void showPedidos(){
+        int i;
+        System.out.println("\n========================================");
+        System.out.println("           Histórico de compras           ");
+        System.out.println("========================================\n");
+        for(i=0; i < this.sizeHistorico();i++){
+                System.out.println("Número: " + this.pedidoAt(i).getNumero());
+                System.out.println("- Situação: " + this.pedidoAt(i).getSituação());
+                System.out.printf("- Data da compra: " + this.pedidoAt(i).getDataPedido());
+                System.out.println("----------------------------------------");
+        }
+        System.out.println("\n");
     }
 }

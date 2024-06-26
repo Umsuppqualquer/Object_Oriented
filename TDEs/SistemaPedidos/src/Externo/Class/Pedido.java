@@ -17,12 +17,12 @@ public class Pedido {
     public Pedido(){
         this.numero = cont;
         cont++;
-        dataPedido = new Date();
         carrinho = new ArrayList<>();
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void endPedido(){
+        dataPedido = new Date();
+        this.situação = "Em aberto";
     }
 
     public void setDataEntrega(Date dataEntrega) {
@@ -66,6 +66,17 @@ public class Pedido {
     }    
 
     public void showItens(){
-        
+        int i;
+        System.out.println("\n========================================");
+        System.out.println("           Carrinho de compras            ");
+        System.out.println("========================================\n");
+        for(i=0; i < this.produtoSize();i++){
+                System.out.println("Descrição: " + this.produtoAT(i).getNome());
+                System.out.println("- Qntd: " + this.produtoAT(i).getQuantidade() + " unidade(s)");
+                System.out.printf("- Valor total: R$ %.2f\n", this.produtoAT(i).getPreco());
+                System.out.println("----------------------------------------");
+        }
+        System.out.println("\n");
     }
+        
 }
