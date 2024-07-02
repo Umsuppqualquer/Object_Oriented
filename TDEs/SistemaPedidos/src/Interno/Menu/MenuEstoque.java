@@ -38,6 +38,7 @@ public class MenuEstoque {
 				case 1:
 					System.out.println("\nVocê escolheu a Opção 1. Entrada de novo lote no estoque.");
 					cadEstq(list, sc);
+					Utils.escArq(list);
 					Utils.fim();
 					break;
 				case 2:
@@ -56,11 +57,13 @@ public class MenuEstoque {
 					} else {
 						System.out.println("Este produto não possui estoque cadastrado.");
 					}
+					Utils.escArq(list);
 					Utils.fim();
 					break;
 				case 4:
 					System.out.println("\nVocê escolheu a Opção 4. Ajuste de estoque.");
 					ajustEstq(list, sc);
+					Utils.escArq(list);
 					Utils.fim();
 					break;
 				case 0:

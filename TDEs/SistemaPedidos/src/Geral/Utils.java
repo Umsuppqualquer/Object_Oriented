@@ -70,10 +70,10 @@ public class Utils {
 	}
 
 	public static void lerARQ(Shop list) {
-		list.carregarDados("Banco.txt");	
+		list.carregarDados();	
 	}
 
 	public static void escArq(Shop list){
-		list.salvarDados("Banco.txt");
+		list.salvarDados();
 	}
 }

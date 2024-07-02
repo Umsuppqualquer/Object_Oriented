@@ -223,8 +223,8 @@ public class Shop implements Serializable {
         }
     }
 
-    public void salvarDados(String nomeArquivo) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+    public void salvarDados() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Banco.txt"))) {
             oos.writeObject(supplyer);  // Grava a lista de fornecedores
             oos.writeObject(product);   // Grava a lista de produtos
             oos.writeObject(users);     // Grava a lista de clientes
@@ -235,8 +235,8 @@ public class Shop implements Serializable {
     }
 
     @SuppressWarnings("unchecked")
-    public void carregarDados(String nomeArquivo) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+    public void carregarDados() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Banco.txt"))) {
             supplyer = (List<Fornecedor>) ois.readObject();  // Lê a lista de fornecedores
             product = (List<Produto>) ois.readObject();      // Lê a lista de produtos
             users = (List<Cliente>) ois.readObject();        // Lê a lista de clientes
