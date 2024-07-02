@@ -245,4 +245,19 @@ public class Shop implements Serializable {
             System.err.println("Erro ao carregar os dados: " + e.getMessage());
         }
     }
+
+    public ArrayList<Pedido> openOrder(){
+        ArrayList<Pedido> aux = new ArrayList<>();
+
+        for(int i = 0; i < this.sizeUser(); i++){
+            Cliente aux1 = this.userAt(i);
+            for(int j = 0; j < aux1.sizeHistorico(); j++){
+                if(aux1.pedidoAt(j).getSituação().equals("Em aberto")){
+                   aux.add(aux1.pedidoAt(j));
+                }
+
+            }
+        }
+        return aux;
+    }
 }

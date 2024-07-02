@@ -35,23 +35,19 @@ public class MenuLoja {
 			System.out.print("Opção: ");
 			esc = sc.nextInt();
 			switch (esc) {
-			case 1:
-				System.out.println("1. Fornecedor"); //revisado
+			case 1: //fornecedor
 				MenuFornecedor.SupMenu(lista,sc);
 				break;
-			case 2:
-				System.out.println("2. Produto");
+			case 2: //produto
 				MenuProduto.ProMenu(lista,sc);
 				break;
-			case 3:
-				System.out.println("3. Estoque");
+			case 3: //estoque
 				MenuEstoque.EstqMenu(lista,sc);
 				break;
-			case 4:
-				System.out.println("4. Cadastro Cliente.");
-				MenuCadastro.cadMenu(lista,sc);
+			case 4: //Cliente
+				MenuCad.cadMenu(lista,sc);
 				break;
-			case 5:
+			case 5: //Login
 				Utils.clearConsole();
 				System.out.println("------------------------------");
 				System.out.println("           LOGIN              ");
@@ -82,6 +78,9 @@ public class MenuLoja {
 				System.out.println("------------------------------");
 				Utils.fim();
 			break;
+			case 6: //Pedidos
+				MenuPedidos.cadMenu(lista, sc);
+				break;
 			case 9:
 				Utils.clearConsole();
 				Utils.lerARQ(lista);

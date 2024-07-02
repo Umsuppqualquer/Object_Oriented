@@ -79,7 +79,7 @@ public class Pedido implements Serializable{
                 System.out.println("Descrição: " + this.produtoAT(i).getNome());
                 System.out.println("- Qntd: " + this.produtoAT(i).getQuantidade() + " unidade(s)");
                 System.out.printf("- Valor total: R$ %.2f\n", this.produtoAT(i).getPreco());
-                System.out.println("----------------------------------------");
+                System.out.println("\n----------------------------------------");
         }
         System.out.println("\n");
     }

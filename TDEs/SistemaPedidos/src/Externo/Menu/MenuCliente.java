@@ -11,10 +11,8 @@ public class MenuCliente {
     public static void menuUser(Cliente log, Shop list, Scanner sc){
         int esc = 1;
 
-        System.out.println("Ola: " +  log.getNome() + "\n");
-
 		while (true) {
-			Utils.clearConsole();
+			//Utils.clearConsole();
 			System.out.println("=======================================");
 			System.out.println("           Menu do Cliente             ");
 			System.out.println("=======================================");
@@ -76,14 +74,12 @@ public class MenuCliente {
 					log.getCarrinho().showItens();
 					System.out.println("Gostaria de confirmar o pedido?");
 					System.out.println("0 - Não / 1 - Sim");
-				
-					int opcao = sc.nextInt();
-					sc.nextLine(); // Consume newline left behind by nextInt()
-				
-					if (opcao == 1){
-						if(contEstq(log, list, opcao, sc) <= 0){
+					if (sc.nextInt() == 1) {
+						if (contEstq(log, list, sc) <= 0) {
 							break;
 						}
+						sc.nextLine();
+				
 						System.out.println("Informe o número do cartão que será utilizado no pagamento:");
 						String numeroCartao = sc.nextLine();
 				
@@ -92,10 +88,9 @@ public class MenuCliente {
 						list.attEstq(log.getCarrinho());
 						log.addHistorico(log.getCarrinho());
 						log.clearCart();
+						Utils.escArq(list);
 				
 						System.out.println("Pedido realizado com sucesso.");
-					} else {
-						System.out.println("Pedido cancelado.");
 					}
 					Utils.fim();
 					break;
@@ -114,8 +109,8 @@ public class MenuCliente {
 		}
     }
 	
-	public static int contEstq(Cliente log, Shop list, int opcao, Scanner sc){
-		int flag = log.getCarrinho().produtoSize() - 2;
+	public static int contEstq(Cliente log, Shop list, Scanner sc){
+		int flag = log.getCarrinho().produtoSize();
 		for (int i = 0; i < log.getCarrinho().produtoSize(); i++){
 			ItemPedido item = log.getCarrinho().produtoAT(i);
 			int faltaEstoque = list.verEstq(item);
@@ -127,9 +122,9 @@ public class MenuCliente {
 				System.out.println("1 - Ajustar a quantidade");
 				System.out.println("2 - Excluir o item do carrinho");
 				System.out.print("Opção: ");
-				opcao = sc.nextInt();
+				int op = sc.nextInt();
 				sc.nextLine();
-				switch (opcao) {
+				switch (op) {
 					case 1:// Ajustar a quantidade no carrinho para a quantidade disponível em estoque
 						System.out.println("Digite a nova quantidade para o item:");
 						int novaQuantidade = sc.nextInt();

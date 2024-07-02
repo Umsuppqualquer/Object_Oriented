@@ -100,7 +100,7 @@ public class Cliente extends Cadastro{
         return false;
     }
 
-    public void clearCart(){ //arrumar isto não pode simplesmente deixar nulo tem que zerar
+    public void clearCart(){
         this.carrinho = new Pedido();
     }
 
@@ -113,7 +113,7 @@ public class Cliente extends Cadastro{
                 System.out.println("Número: " + this.pedidoAt(i).getNumero());
                 System.out.println("- Situação: " + this.pedidoAt(i).getSituação());
                 System.out.printf("- Data da compra: " + this.pedidoAt(i).getDataPedido());
-                System.out.println("----------------------------------------");
+                System.out.println("\n----------------------------------------");
         }
         System.out.println("\n");
     }

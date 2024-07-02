@@ -6,7 +6,7 @@ import Externo.Class.*;
 import Geral.*;
 import Interno.Class.*;
 
-public class MenuCadastro {
+public class MenuCad {
 
 	public static void cadMenu(Shop list, Scanner sc) {
 		int esc = 1;
