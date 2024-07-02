@@ -1,38 +1,42 @@
-package T1.Menu;
+package Interno.Menu;
 
 import java.util.*;
 
 import Geral.*;
-import T1.Class.Produto;
-import T1.Class.Endereco;
-import T1.Class.Fornecedor;
+import Interno.Class.Endereco;
+import Interno.Class.Fornecedor;
 
 //ajustado
 
 public class MenuFornecedor {
 
-	public static void SupMenu(Shop list) {
+	public static void SupMenu(Shop list, Scanner sc) {
 
 		Utils.clearConsole();
-
-		Scanner sc1 = new Scanner(System.in);
 
 		while (true) {
 			int esc;
 
+			System.out.println("=======================================");
+			System.out.println("           Menu de Fornecedor           ");
+			System.out.println("=======================================");
 			System.out.println("Escolha uma opção:");
-			System.out.println("1. Cadastro de fornecedor.");
-			System.out.println("2. Mostrar todos os fornecedores.");
-			System.out.println("3. Excluir fornecedor.");
-			System.out.println("4. Ajuste de cadastro de fornecedor.");
-			System.out.println("5. Consulta por nome ou código.");
-			System.out.println("0. Sair.\n");
-			esc = sc1.nextInt();
+			System.out.println("---------------------------------------");
+			System.out.println("1. Cadastro de fornecedor");
+			System.out.println("2. Mostrar todos os fornecedores");
+			System.out.println("3. Excluir fornecedor");
+			System.out.println("4. Ajuste de cadastro de fornecedor");
+			System.out.println("5. Consulta por nome ou código");
+			System.out.println("---------------------------------------");
+			System.out.println("0. Retornar ao menu principal\n");
+			System.out.print("Opção: ");
+
+			esc = sc.nextInt();
 
 			switch (esc) {
 			case 1:
 				System.out.println("Você escolheu a Opção 1. Cadastro de fornecedor.");
-				cadForn(list);
+				cadForn(list,sc);
 				Utils.fim();
 				break;
 			case 2:
@@ -42,30 +46,31 @@ public class MenuFornecedor {
 				break;
 			case 3:
 				System.out.println("Você escolheu a Opção 3. Excluir fornecedor.");
-				SimpEsc(list);
+				list.fornSimp();
 				System.out.println("Digite o número do fornecedor que deseja excluir:");
-				int i = sc1.nextInt();
-				excForn(list, i);
+				int i = sc.nextInt();
+				Fornecedor aux = list.forneAt(i);
+				list.excForne(aux);
 				Utils.fim();
 				break;
 			case 4:
 				System.out.println("Você escolheu a Opção 4. Ajuste de cadastro de fornecedor.");
-				SimpEsc(f2);
+				list.fornSimp();
 				System.out.println("Digite o número do fornecedor que deseja ajustar:");
-				int j = sc1.nextInt();
-				AjustForn(f2, j);
+				int j = sc.nextInt();
+				AjustForn(list.forneAt(j),sc);
 				Utils.fim();
 				break;
 			case 5:
 				System.out.println("Você escolheu a Opção 5. Consulta por nome ou código.");
 				System.out.println("Digite o nome ou código do fornecedor que deseja pesquisar:");
-				sc1.nextLine();
-				String chavePesquisa = sc1.nextLine();
-				searchForn(f2, chavePesquisa);
+				sc.nextLine();
+				String key = sc.nextLine();
+				searchForn(list, key);
 				Utils.fim();
 				break;
 			case 0:
-				System.out.println("Saindo...");
+				System.out.println("\nRetornando ao menu principal...");
 				return;
 			default:
 				System.out.println("Opção inválida. Escolha novamente.");
@@ -74,33 +79,32 @@ public class MenuFornecedor {
 		}
 	}
 
-	public static void cadForn(Shop list) { //revisado
-		Scanner sc2 = new Scanner(System.in);
+	public static void cadForn(Shop list, Scanner sc) { //revisado
 		Endereco aux = new Endereco();
 		Fornecedor f = new Fornecedor();
 
 		System.out.println("\nDigite o nome do fornecedor:");
-		f.setNome(sc2.nextLine());
+		f.setNome(sc.nextLine());
 		System.out.println("\nDigite a descrição do fornecedor:");
-		f.setDescricao(sc2.nextLine());
+		f.setDescricao(sc.nextLine());
 		System.out.println("\nDigite o telefone do fornecedor:");
-		f.setTelefone(sc2.nextLine());
+		f.setTelefone(sc.nextLine());
 		System.out.println("\nDigite o email do fornecedor:");
-		f.setEmail(sc2.nextLine());
+		f.setEmail(sc.nextLine());
 		System.out.println("\nDigite a rua onde se localiza:");
-		aux.setRua(sc2.nextLine());
+		aux.setRua(sc.nextLine());
 		System.out.println("\nDigite o número de endereço:");
-		aux.setNumero(sc2.nextLine());
+		aux.setNumero(sc.nextLine());
 		System.out.println("\nComplemento do endereço:");
-		aux.setComplmento(sc2.nextLine());
+		aux.setComplmento(sc.nextLine());
 		System.out.println("\nBairro onde se localiza:");
-		aux.setBairro(sc2.nextLine());
+		aux.setBairro(sc.nextLine());
 		System.out.println("\nCódigo CEP:");
-		aux.setCep(sc2.nextLine());
+		aux.setCep(sc.nextLine());
 		System.out.println("\nCidade onde reside:");
-		aux.setCidade(sc2.nextLine());
+		aux.setCidade(sc.nextLine());
 		System.out.println("\nEstado onde reside:");
-		aux.setEstado(sc2.nextLine());
+		aux.setEstado(sc.nextLine());
 
 		f.setLocal(aux);
 
@@ -125,45 +129,7 @@ public class MenuFornecedor {
 		}
 	}
 
-	public static void SimpEsc(Shop list) {
-		char a = '\n';
-		System.out.println("\n----------------------------------------");
-		for (int i = 0; i < list.sizeForne(); i++) {
-			if (list.forneAt(i).getNome().charAt(0) == a) {
-				System.out.println(i + "° - " + list.forneAt(i).getNome()+"\n");
-			} else {
-				System.out.println(list.forneAt(i).getNome().charAt(0));
-				System.out.println(i + "° - " + list.forneAt(i).getNome(i).getNome());
-				System.out.println("\n----------------------------------------");
-			}
-		}
-		System.out.println("\n");
-	}
-
-	public static void excForn(ArrayList<Fornecedor> f2, int index) {
-		Scanner sc2 = new Scanner(System.in);
-		System.out.println("\nConfirmar exclusão de cadastro: " + f2.get(index).getNome());
-		System.out.println("1 - Sim\n2 - Não");
-		int op = sc2.nextInt();
-		while (true) {
-			switch (op) {
-			case 1:
-				f2.remove(index);
-				System.out.println("\nFoi realizado a remoção do cadastro!!!");
-				orgList(f2);
-				return;
-			case 2:
-				System.out.println("Operação de remoção cancelada;");
-				return;
-
-			default:
-				System.out.println("Opção inválida, tente novamente.");
-				break;
-			}
-		}
-	}
-
-	public static void orgList(ArrayList<Fornecedor> f2) {
+	public static void orgList(List<Fornecedor> f2) {
 		Collections.sort(f2, new Comparator<Fornecedor>() {
 			@Override
 			public int compare(Fornecedor fornecedor1, Fornecedor fornecedor2) {
@@ -172,80 +138,77 @@ public class MenuFornecedor {
 		});
 	}
 
-	public static void AjustForn(ArrayList<Fornecedor> f2, int index) {
-		Scanner sc = new Scanner(System.in);
+	public static void AjustForn(Fornecedor p1, Scanner sc) { //revisado
 
-		if (index >= 0 && index < f2.size()) {
-			Fornecedor aux = f2.get(index);
-
-			System.out.println("\nMenu de Ajuste para Fornecedor: " + aux.getNome());
+		if (p1 != null) {
+			System.out.println("\nMenu de Ajuste para Fornecedor: " + p1.getNome());
 			System.out.println("Digite o novo nome do fornecedor (ou ENTER para manter o mesmo):");
-			String novoNome = sc.nextLine();
-			if (!novoNome.isEmpty()) {
-				aux.setNome(novoNome);
+			String aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				p1.setNome(aux);
 			}
 
 			System.out.println("Digite a nova descrição do fornecedor (ou ENTER para manter a mesma):");
-			String novaDescricao = sc.nextLine();
-			if (!novaDescricao.isEmpty()) {
-				aux.setDescricao(novaDescricao);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				p1.setDescricao(aux);
 			}
 
 			System.out.println("Digite o novo telefone do fornecedor (ou ENTER para manter o mesmo):");
-			String novoTelefone = sc.nextLine();
-			if (!novoTelefone.isEmpty()) {
-				aux.setTelefone(novoTelefone);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				p1.setTelefone(aux);
 			}
 
 			System.out.println("Digite o novo email do fornecedor (ou ENTER para manter o mesmo):");
-			String novoEmail = sc.nextLine();
-			if (!novoEmail.isEmpty()) {
-				aux.setEmail(novoEmail);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				p1.setEmail(aux);
 			}
 
-			Endereco enderecoAtual = aux.getEnd();
+			Endereco enderecoAtual = p1.getLocal();
 			System.out.println("Digite os novos dados do endereço:");
 
 			System.out.println("Rua (ou ENTER para manter a mesma):");
-			String novaRua = sc.nextLine();
-			if (!novaRua.isEmpty()) {
-				enderecoAtual.setRua(novaRua);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				enderecoAtual.setRua(aux);
 			}
 
 			System.out.println("Número (ou ENTER para manter o mesmo):");
-			String novoNumero = sc.nextLine();
-			if (!novoNumero.isEmpty()) {
-				enderecoAtual.setNumero(novoNumero);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				enderecoAtual.setNumero(aux);
 			}
 
 			System.out.println("Complemento (ou ENTER para manter o mesmo):");
-			String novoComplemento = sc.nextLine();
-			if (!novoComplemento.isEmpty()) {
-				enderecoAtual.setComplmento(novoComplemento);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				enderecoAtual.setComplmento(aux);
 			}
 
 			System.out.println("Bairro (ou ENTER para manter o mesmo):");
-			String novoBairro = sc.nextLine();
-			if (!novoBairro.isEmpty()) {
-				enderecoAtual.setBairro(novoBairro);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				enderecoAtual.setBairro(aux);
 			}
 
 			System.out.println("CEP (ou ENTER para manter o mesmo):");
-			String novoCep = sc.nextLine();
-			if (!novoCep.isEmpty()) {
-				enderecoAtual.setCep(novoCep);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				enderecoAtual.setCep(aux);
 			}
 
 			System.out.println("Cidade (ou ENTER para manter a mesma):");
-			String novaCidade = sc.nextLine();
-			if (!novaCidade.isEmpty()) {
-				enderecoAtual.setCidade(novaCidade);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				enderecoAtual.setCidade(aux);
 			}
 
 			System.out.println("Estado (ou ENTER para manter o mesmo):");
-			String novoEstado = sc.nextLine();
-			if (!novoEstado.isEmpty()) {
-				enderecoAtual.setEstado(novoEstado);
+			aux = sc.nextLine();
+			if (!aux.isEmpty()) {
+				enderecoAtual.setEstado(aux);
 			}
 
 			System.out.println("Fornecedor ajustado com sucesso:");
@@ -254,12 +217,15 @@ public class MenuFornecedor {
 		}
 	}
 
-	public static void searchForn(ArrayList<Fornecedor> f2, String key) {
-		ArrayList<Fornecedor> resultados = new ArrayList<>();
+	public static void searchForn(Shop list, String key) {
+		List<Fornecedor> resultados = new ArrayList<>();
 
-		for (Fornecedor fornecedor : f2) {
-			if (fornecedor.getNome().toLowerCase().contains(key.toLowerCase())) {
-				resultados.add(fornecedor);
+		Fornecedor sup = new Fornecedor();
+		sup.setNome(key);
+
+		for (int i = 0; i < list.sizeForne(); i++) {
+			if (list.forneAt(i).equals(sup) && list.forneAt(i) != null){
+				resultados.add(list.forneAt(i));
 			}
 		}
 
@@ -272,7 +238,7 @@ public class MenuFornecedor {
 				System.out.println("\n----------------------------------------\n");
 				System.out.println("Nome da empresa: " + fornecedor.getNome() + "\nDescrição: " + fornecedor.getDescricao()+ 
 					"\nTelefone: " + fornecedor.getTelefone() + "\nEmail: " + fornecedor.getEmail());
-				aux = fornecedor.getEnd();
+				aux = fornecedor.getLocal();
 				System.out.println("Rua: " + aux.getRua() + "\nNúmero: " + aux.getNumero() + "\nComplemento: "+ aux.getComplmento()
 					 + "\nBairro: " + aux.getBairro() + "\nCEP: " + aux.getCep() + "\nCidade: "+ aux.getCidade() + "\nEstado: "
 					 + aux.getEstado());

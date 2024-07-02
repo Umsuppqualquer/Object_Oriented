@@ -1,11 +1,18 @@
-package T1.Class;
+package Interno.Class;
 
-public class Estoque {
+import java.io.Serializable;
+
+public class Estoque implements Serializable {
 	private int quantidade;
 	private double preco;
 
 	public Estoque() {
 
+	}
+
+	public Estoque(int quantidade, double preco){
+		this.quantidade = quantidade;
+		this.preco = preco;
 	}
 
 	public void setPreco(double preco) {

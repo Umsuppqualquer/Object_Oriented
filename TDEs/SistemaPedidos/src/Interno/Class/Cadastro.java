@@ -1,5 +1,8 @@
-package T1.Class;
-public class Cadastro {
+package Interno.Class;
+
+import java.io.Serializable;
+
+public class Cadastro implements Serializable {
 
     private String nome;
     private String telefone;
@@ -8,6 +11,13 @@ public class Cadastro {
 
     public Cadastro (){
 
+    }
+
+    public Cadastro(String nome, String telefone, String email, Endereco local) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.local = local;
     }
 
     public void setNome(String nome) {
