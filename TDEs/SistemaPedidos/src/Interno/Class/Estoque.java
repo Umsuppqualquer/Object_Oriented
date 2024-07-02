@@ -1,6 +1,8 @@
 package Interno.Class;
 
-public class Estoque {
+import java.io.Serializable;
+
+public class Estoque implements Serializable {
 	private int quantidade;
 	private double preco;
 

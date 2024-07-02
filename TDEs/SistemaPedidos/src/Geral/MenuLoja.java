@@ -84,7 +84,7 @@ public class MenuLoja {
 			break;
 			case 9:
 				Utils.clearConsole();
-				Utils.setup(lista);
+				Utils.lerARQ(lista);
 				System.out.println("=======================================");
 				System.out.println("       Modo Teste Ativado!             ");
 				System.out.println("=======================================");

@@ -1,6 +1,8 @@
 package Interno.Class;
 
-public class Produto {
+import java.io.Serializable;
+
+public class Produto implements Serializable{
 	private String nome;
 	private String descproduto;
 	private static int cont = 0;

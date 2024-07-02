@@ -10,12 +10,18 @@
 
 package Geral;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
 import Interno.Class.*;
 import Externo.Class.*;
 
-public class Shop {
+public class Shop implements Serializable {
 
     private List<Fornecedor> supplyer;
     private List<Produto> product;
@@ -186,5 +192,57 @@ public class Shop {
         }
         t1.setTest(false);         
         return t1;
+    }
+
+    public int verEstq(ItemPedido p1) {
+        for (int j = 0; j < this.sizeProd(); j++) {
+            if (p1.getNome().equals(this.prodAt(j).getNome())) {
+                int estoqueAtual = this.prodAt(j).getEstoque().getQuantidade();
+                int quantidadePedido = p1.getQuantidade();
+                
+                if (estoqueAtual < quantidadePedido) {
+                    return quantidadePedido - estoqueAtual; // Retorna a quantidade que excede o estoque atual
+                } else {
+                    return 0; // Não há excedente, estoque é suficiente
+                }
+            }
+        }
+        
+        return -1; // Retorna um valor de erro caso o produto não seja encontrado
+    }
+
+    public void attEstq(Pedido p1) {
+        for (int i = 0; i < p1.produtoSize(); i++) {
+            for (int j = 0; j < this.sizeProd(); j++) {
+                if (p1.produtoAT(i).getNome().equals(this.prodAt(j).getNome())) {
+                    int novaQuantidade = this.prodAt(j).getEstoque().getQuantidade() - p1.produtoAT(i).getQuantidade();
+                    this.prodAt(j).getEstoque().setQuantidade(novaQuantidade);
+                    break;                    
+                }
+            }
+        }
+    }
+
+    public void salvarDados(String nomeArquivo) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+            oos.writeObject(supplyer);  // Grava a lista de fornecedores
+            oos.writeObject(product);   // Grava a lista de produtos
+            oos.writeObject(users);     // Grava a lista de clientes
+            System.out.println("Dados salvos com sucesso!");
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar os dados: " + e.getMessage());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void carregarDados(String nomeArquivo) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+            supplyer = (List<Fornecedor>) ois.readObject();  // Lê a lista de fornecedores
+            product = (List<Produto>) ois.readObject();      // Lê a lista de produtos
+            users = (List<Cliente>) ois.readObject();        // Lê a lista de clientes
+            System.out.println("Dados carregados com sucesso!");
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Erro ao carregar os dados: " + e.getMessage());
+        }
     }
 }

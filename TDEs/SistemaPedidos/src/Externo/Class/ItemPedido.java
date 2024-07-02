@@ -1,6 +1,8 @@
 package Externo.Class;
 
-public class ItemPedido {
+import java.io.Serializable;
+
+public class ItemPedido implements Serializable {
     private String nome;
     private int quantidade;
     private float preco;

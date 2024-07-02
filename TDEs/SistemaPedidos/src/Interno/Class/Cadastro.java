@@ -1,6 +1,8 @@
 package Interno.Class;
 
-public class Cadastro {
+import java.io.Serializable;
+
+public class Cadastro implements Serializable {
 
     private String nome;
     private String telefone;

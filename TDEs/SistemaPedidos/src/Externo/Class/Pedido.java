@@ -1,12 +1,13 @@
 package Externo.Class;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 //A classe pedido não herda cliente, ela tem que ter um cliente
 
-public class Pedido {
+public class Pedido implements Serializable{
     private int numero;
     private static int cont = 0;
     private Date dataPedido;
@@ -50,6 +51,10 @@ public class Pedido {
     }
 
     public void excItemCarrinho(int i){
+        carrinho.remove(i);
+    }
+
+    public void excItemCarrinho(ItemPedido i){
         carrinho.remove(i);
     }
 

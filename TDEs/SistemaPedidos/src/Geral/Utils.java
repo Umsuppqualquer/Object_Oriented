@@ -65,6 +65,15 @@ public class Utils {
 
 		list.addUser(c2);
 
+		escArq(list);
+		
 	}
 
+	public static void lerARQ(Shop list) {
+		list.carregarDados("Banco.txt");	
+	}
+
+	public static void escArq(Shop list){
+		list.salvarDados("Banco.txt");
+	}
 }

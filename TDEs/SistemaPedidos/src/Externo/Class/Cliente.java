@@ -101,7 +101,7 @@ public class Cliente extends Cadastro{
     }
 
     public void clearCart(){ //arrumar isto não pode simplesmente deixar nulo tem que zerar
-        this.carrinho = null;
+        this.carrinho = new Pedido();
     }
 
     public void showPedidos(){
