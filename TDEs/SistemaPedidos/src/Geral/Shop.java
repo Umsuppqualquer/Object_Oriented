@@ -260,12 +260,12 @@ public class Shop implements Serializable {
         }
     }
 
-    public ArrayList<Cliente> openOrder(){
+    public ArrayList<Cliente> openOrder(String s1){
         ArrayList<Cliente> aux = new ArrayList<>();
         for(int i = 0; i < this.sizeUser(); i++){
             Cliente aux1 = this.userAt(i);
             for(int j = 0; j < aux1.sizeHistorico(); j++){
-                if(aux1.pedidoAt(j).getSituação().equals("Em aberto")){
+                if(aux1.pedidoAt(j).getSituação().equals(s1)){
                    aux.add(aux1);
                    break;
                 }
