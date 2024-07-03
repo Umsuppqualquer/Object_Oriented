@@ -12,7 +12,7 @@ public class MenuLoja {
 		int esc = 1;
 		Scanner sc = new Scanner(System.in);
 
-		Cliente log = new Cliente();
+		Cliente log = new Cliente(lista.getCont());
 		Teste t1 = new Teste();
 
 		while (true) {
@@ -45,7 +45,7 @@ public class MenuLoja {
 				MenuEstoque.EstqMenu(lista,sc);
 				break;
 			case 4: //Cliente
-				MenuCad.cadMenu(lista,sc);
+				MenuCad.cadMenu(lista,sc,lista.getCont());
 				break;
 			case 5: //Login
 				Utils.clearConsole();
@@ -71,7 +71,7 @@ public class MenuLoja {
 				if (t1.getTest()) {
 					System.out.println("Login bem-sucedido! Bem-vindo, " + lista.userAt(t1.getIndex()).getNome() + ".");
 					Utils.fim();
-					MenuCliente.menuUser(lista.userAt(t1.getIndex()), lista,sc);
+					MenuCliente.menuUser(lista.userAt(t1.getIndex()), lista,sc, lista.getCont());
 				} else {
 					System.out.println("Usuário ou senha inválido, tente novamente.");
 				}
@@ -83,6 +83,7 @@ public class MenuLoja {
 				break;
 			case 9:
 				Utils.clearConsole();
+				//Utils.setup(lista);
 				Utils.lerARQ(lista);
 				System.out.println("=======================================");
 				System.out.println("       Modo Teste Ativado!             ");
@@ -91,6 +92,7 @@ public class MenuLoja {
 				break;
 			case 0:
 				System.out.println("Fim...");
+				lista.getCont().salvarContador();
 				sc.close();
 				return;
 			default:

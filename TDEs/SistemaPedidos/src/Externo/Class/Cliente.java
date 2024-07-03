@@ -1,8 +1,10 @@
 package Externo.Class;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import Geral.Contador;
 import Interno.Class.*;
 
 public class Cliente extends Cadastro{
@@ -12,19 +14,19 @@ public class Cliente extends Cadastro{
     private Pedido carrinho;
     private List<Pedido> historico; //tem que ser armazenado os pedidos no qual este cliente fez
 
-    public Cliente(){
-        this.carrinho = new Pedido();
+    public Cliente(Contador cont){
+        this.carrinho = new Pedido(cont);
         this.historico = new ArrayList<Pedido>();
 
     }
 
-    public Cliente(String nome, String telefone, String email, Endereco local,String login, String senha, String cartaoCredito){
+    public Cliente(String nome, String telefone, String email, Endereco local,String login, String senha, String cartaoCredito, Contador cont){
         super(nome, telefone, email, local); //da para chamar deste jeito o construtor da classe cadastro
         
         this.login = login;
         this.senha = senha;
         this.cartaoCredito = cartaoCredito;
-        this.carrinho = new Pedido();
+        this.carrinho = new Pedido(cont);
         this.historico = new ArrayList<Pedido>();
     }
 
@@ -100,11 +102,11 @@ public class Cliente extends Cadastro{
         return false;
     }
 
-    public void clearCart(){
-        this.carrinho = new Pedido();
+    public void clearCart(Contador cont){
+        this.carrinho = new Pedido(cont);
     }
 
-    public void showPedidos(){
+    public void showPedidos(SimpleDateFormat simple){
         int i;
         System.out.println("\n========================================");
         System.out.println("           Histórico de compras           ");
@@ -112,7 +114,13 @@ public class Cliente extends Cadastro{
         for(i=0; i < this.sizeHistorico();i++){
                 System.out.println("Número: " + this.pedidoAt(i).getNumero());
                 System.out.println("- Situação: " + this.pedidoAt(i).getSituação());
-                System.out.printf("- Data da compra: " + this.pedidoAt(i).getDataPedido());
+                System.out.printf("- Data da compra: " + simple.format(this.pedidoAt(i).getDataPedido()));
+                if(this.pedidoAt(i).getDataPedido() != null){
+                    System.out.printf("\n- Previsão de entrega: " + simple.format(this.pedidoAt(i).getDataPedido()));
+                }
+                else{
+                    System.out.printf("\n- Previsão de entrega: Não informado");
+                }
                 System.out.println("\n----------------------------------------");
         }
         System.out.println("\n");

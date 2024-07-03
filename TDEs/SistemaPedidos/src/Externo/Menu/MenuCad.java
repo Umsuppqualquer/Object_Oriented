@@ -8,7 +8,7 @@ import Interno.Class.*;
 
 public class MenuCad {
 
-	public static void cadMenu(Shop list, Scanner sc) {
+	public static void cadMenu(Shop list, Scanner sc, Contador cont) {
 		int esc = 1;
 
 		while (true) {
@@ -29,7 +29,7 @@ public class MenuCad {
 			switch (esc) {
 			case 1:
 				System.out.println("1. Cadastrar Usuário.");
-				cadUser(list,sc);
+				cadUser(list,sc,cont);
 				Utils.fim();
 				break;
 			case 2:
@@ -58,9 +58,9 @@ public class MenuCad {
 	
 	}
 
-	public static void cadUser(Shop list, Scanner sc){ //ok
+	public static void cadUser(Shop list, Scanner sc, Contador cont){ //ok
 		Endereco aux = new Endereco();
-		Cliente c = new Cliente();
+		Cliente c = new Cliente(cont);
 
 		System.out.println("\nDigite o seu nome:");
 		c.setNome(sc.nextLine());

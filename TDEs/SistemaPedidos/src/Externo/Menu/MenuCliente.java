@@ -8,7 +8,7 @@ import Externo.Class.ItemPedido;
 
 public class MenuCliente {
 
-    public static void menuUser(Cliente log, Shop list, Scanner sc){
+    public static void menuUser(Cliente log, Shop list, Scanner sc, Contador cont){
         int esc = 1;
 
 		while (true) {
@@ -48,7 +48,7 @@ public class MenuCliente {
 						
 						System.out.println("Digite a quantidade que gostaria de adicionar ao carrinho:");
 						int qntd = sc.nextInt();
-						sc.nextLine(); // Limpa o buffer de entrada
+						sc.nextLine();
 						
 						novo.setQuantidade(qntd);
 						novo.setPreco((float) (qntd * list.prodAt(t1.getIndex()).getEstoque().getPreco() * 1.17));
@@ -56,6 +56,7 @@ public class MenuCliente {
 						System.out.println("Item adicionado ao carrinho:");
 						list.showItem(novo);
 						log.getCarrinho().addItemCarrinho(novo);
+						Utils.escArq(list);
 						Utils.fim();
 						break;
 					} else {
@@ -83,20 +84,21 @@ public class MenuCliente {
 						System.out.println("Informe o número do cartão que será utilizado no pagamento:");
 						String numeroCartao = sc.nextLine();
 				
-						log.getCarrinho().endPedido();
+						log.getCarrinho().endPedido(cont);
 						log.setCartaoCredito(numeroCartao);
 						list.attEstq(log.getCarrinho());
 						log.addHistorico(log.getCarrinho());
-						log.clearCart();
+						log.clearCart(cont);
 						Utils.escArq(list);
-				
+
+						Utils.clearConsole();				
 						System.out.println("Pedido realizado com sucesso.");
 					}
 					Utils.fim();
 					break;
 				case 4:
 					System.out.println("4. Meus pedidos.");
-					log.showPedidos();				
+					log.showPedidos(list.getSleeptime());				
 					Utils.fim();
 					break;
 				case 0:
@@ -135,7 +137,10 @@ public class MenuCliente {
 							item.setQuantidade(novaQuantidade);
 							System.out.println("Quantidade ajustada para: " + novaQuantidade);
 						} else {
+							Utils.clearConsole();
 							System.out.println("Quantidade digitada excede o estoque disponível. Operação cancelada.");
+							Utils.pressEnter();
+							return 0;
 						}
 						break;
 					case 2:// Remover o item do carrinho
