@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Contador",
+            "request": "launch",
+            "mainClass": "Geral.Contador",
+            "projectName": "Object_Oriented_f218ec20"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "MenuLoja",
+            "request": "launch",
+            "mainClass": "Geral.MenuLoja",
+            "projectName": "Object_Oriented_f218ec20"
+        }
+    ]
+}

@@ -48,18 +48,29 @@ public class Utils {
 
 		Estoque e2 = new Estoque(10, 4.00);
 
+		Estoque e3 = new Estoque(53, 129.99);
+
+		Estoque e4 = new Estoque(5, 1299.50);
+
 		Produto prod1 = new Produto("Melancia", "Melancia quadrada", f4, e1);
 		list.addProd(prod1);
 
 		Produto prod2 = new Produto("Suporte Tv", "51 polegadas", f5, e2);
 		list.addProd(prod2);
 
+		Produto prod3 = new Produto("A54 - Roxo", "Melancia quadrada", f4, e3);
+		list.addProd(prod3);
+
+		Produto prod4 = new Produto("Bonasai gigante", "Árvore de cerejeira", f5, e4);
+		list.addProd(prod4);
+
+
 
 		Cliente c1 = new Cliente("Caetano Veloso", "(04) 4002-8922","email@ucs.br" , 
-					endereco2, "cveloso", "4321", "9876 5432 1234 5678");
+					endereco2, "cveloso", "4321", "9876 5432 1234 5678",list.getCont());
 
 		Cliente c2 = new Cliente("Luiz P. Kakuichi", "(54) 99123-5166","lpkakuichi@ucs.br" , 
-					endereco1, "lpkaku", "1234", "1234 5678 9876 5432");
+					endereco1, "lpkaku", "1234", "1234 5678 9876 5432",list.getCont());
 
 		list.addUser(c1);
 

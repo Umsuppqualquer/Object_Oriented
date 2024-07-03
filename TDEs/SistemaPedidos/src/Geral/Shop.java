@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import Interno.Class.*;
@@ -26,11 +27,23 @@ public class Shop implements Serializable {
     private List<Fornecedor> supplyer;
     private List<Produto> product;
     private List<Cliente> users;
+    private Contador cont;
+    private SimpleDateFormat sleeptime;
 
     public Shop(){
         this.supplyer = new ArrayList<>();
         this.product = new ArrayList<>();
         this.users = new ArrayList<>();
+        this.cont = new Contador();
+        this.sleeptime = new SimpleDateFormat("dd/MM/YYYY");
+    }
+
+    public SimpleDateFormat getSleeptime() {
+        return sleeptime;
+    }
+
+    public Contador getCont() {
+        return cont;
     }
 
     public void addForne(Fornecedor f1){
@@ -240,20 +253,21 @@ public class Shop implements Serializable {
             supplyer = (List<Fornecedor>) ois.readObject();  // Lê a lista de fornecedores
             product = (List<Produto>) ois.readObject();      // Lê a lista de produtos
             users = (List<Cliente>) ois.readObject();        // Lê a lista de clientes
-            System.out.println("Dados carregados com sucesso!");
+            //System.out.println("Dados carregados com sucesso!");
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Erro ao carregar os dados: " + e.getMessage());
+            Utils.setup(this);
         }
     }
 
-    public ArrayList<Pedido> openOrder(){
-        ArrayList<Pedido> aux = new ArrayList<>();
-
+    public ArrayList<Cliente> openOrder(String s1){
+        ArrayList<Cliente> aux = new ArrayList<>();
         for(int i = 0; i < this.sizeUser(); i++){
             Cliente aux1 = this.userAt(i);
             for(int j = 0; j < aux1.sizeHistorico(); j++){
-                if(aux1.pedidoAt(j).getSituação().equals("Em aberto")){
-                   aux.add(aux1.pedidoAt(j));
+                if(aux1.pedidoAt(j).getSituação().equals(s1)){
+                   aux.add(aux1);
+                   break;
                 }
 
             }
